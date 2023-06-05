@@ -13,11 +13,13 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
+  },
+  type: {
+    type: Sequelize.STRING,
   }
 })
 
 module.exports = User
-
 /**
  * instanceMethods
  */
