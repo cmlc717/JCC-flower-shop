@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
+import OrderHistory from '../features/orderHistory/OrderHistory'; 
 import { me } from './store';
 
 /**
@@ -23,6 +24,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+          <Route path="/orderHistory" element={<OrderHistory />} />
         </Routes>
       ) : (
         <Routes>
