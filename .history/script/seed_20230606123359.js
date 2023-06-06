@@ -21,13 +21,7 @@ async function seed() {
     Product.create({name: 'roses', price: '20.00', description: 'lots of roses'}),
     Product.create({name: 'daisies', price: '10.00', description: 'lots of daisies'}),
   ])
-  console.log('Products:')
-  products.forEach(product => {
-    console.log(`Name: ${product.name}`)
-    console.log(`Price: $${product.price}`)
-    console.log(`Description: ${product.description}`)
-    console.log('---')
-  })
+
   // Creating Orders
   const orders = await Promise.all([
     Order.create({number: 1}),
@@ -84,4 +78,4 @@ if (module === require.main) {
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed;
+module.exports = seed

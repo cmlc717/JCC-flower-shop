@@ -6,7 +6,8 @@ require("dotenv").config();
 module.exports = app;
 
 // Import the Product model
-const Product = require("../server/db/models/Product");
+const { Product } = require("./path/to/product-model");
+
 
 // logging middleware
 app.use(morgan("dev"));
@@ -18,19 +19,12 @@ app.use(express.json());
 app.use("/auth", require("./auth"));
 app.use("/api", require("./api"));
 
+app.get("/", (req, res) =>
+  res.sendFile(path.join(__dirname, "..", "public/index.html"))
+);
+
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
-
-// Retrieve all products from the database
-app.get("/", async (req, res, next) => {
-  try {
-    const products = await Product.findAll();
-
-    res.sendFile(path.join(__dirname, "..", "public/index.html"));
-  } catch (error) {
-    next(error);
-  }
-});
 
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {
@@ -43,20 +37,12 @@ app.use((req, res, next) => {
   }
 });
 
-// sends index.html with products as data
-app.use("*", async (req, res, next) => {
-  try {
-    const products = await Product.findAll();
-
-    res.sendFile(path.join(__dirname, "..", "public/index.html"), {
-      products: JSON.stringify(products),
-    });
-  } catch (error) {
-    next(error);
-  }
+// sends index.html
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "..", "public/index.html"));
 });
 
-// error handling middleware
+// error handling endware
 app.use((err, req, res, next) => {
   console.error(err);
   console.error(err.stack);
