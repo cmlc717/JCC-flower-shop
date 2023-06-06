@@ -14,8 +14,8 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: "cody", password: "123", type: "shopper" }),
-    User.create({ username: "murphy", password: "123", type: "shopper" }),
+    User.create({ username: "cody", password: "123", type: "shopper", email: "cody@pug.org", address: "1 Fullstack Ave", cardNumber: 1234}),
+    User.create({ username: "murphy", password: "123", type: "shopper", email: "murphy@snake.com", address: "44 Grace Hopper St", cardNumber: 55555 }),
   ]);
 
   // Creating Products
@@ -44,6 +44,7 @@ async function seed() {
     price: "35.00", 
     description: "orchids" }),
   ]);
+
   console.log("Products:");
   products.forEach((product) => {
     console.log(`Name: ${product.name}`);
@@ -51,6 +52,7 @@ async function seed() {
     console.log(`Description: ${product.description}`);
     console.log("---");
   });
+
   // Creating Orders
   const orders = await Promise.all([
     Order.create({ number: 1 }),
@@ -69,6 +71,7 @@ async function seed() {
   users[1].addOrder(orders[2]); //oder: 2, user: murphy
   products[0].addOrder(orders[2]); //product: roses
 
+  // Adding products to users (cart)
   users[0].addProduct(products[1]);
 
   console.log(`seeded successfully`);
