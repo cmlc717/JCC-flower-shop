@@ -21,13 +21,7 @@ async function seed() {
     Product.create({name: 'roses', price: '20.00', description: 'lots of roses'}),
     Product.create({name: 'daisies', price: '10.00', description: 'lots of daisies'}),
   ])
-  console.log('Products:')
-  products.forEach(product => {
-    console.log(`Name: ${product.name}`)
-    console.log(`Price: $${product.price}`)
-    console.log(`Description: ${product.description}`)
-    console.log('---')
-  })
+
   // Creating Orders
   const orders = await Promise.all([
     Order.create({number: 1}),
@@ -36,18 +30,16 @@ async function seed() {
   ])
 
   users[0].addOrder(orders[0]); //order: 1, user: cody
-  products[0].addOrder(orders[0]) //product: roses and daisies
-  products[1].addOrder(orders[0])
+  orders[0].addProduct(products[0]) //product: roses and daisies
+  orders[0].addProduct(products[1])
 
   users[1].addOrder(orders[1]); //oder: 2, user: murphy
-  products[0].addOrder(orders[1]) //product: roses and daisies
-  products[1].addOrder(orders[1])
+  orders[0].addProduct(products[0]) //product: roses and daisies
+  orders[0].addProduct(products[1])
 
   users[1].addOrder(orders[2]); //oder: 2, user: murphy
-  products[0].addOrder(orders[2]) //product: roses
+  orders[0].addProduct(products[0]) //product: roses
 
-  users[0].addProduct(products[1]);
-  
   console.log(`seeded successfully`)
   return {
     users: {
@@ -86,4 +78,4 @@ if (module === require.main) {
 }
 
 // we export the seed function for testing purposes (see `./seed.spec.js`)
-module.exports = seed;
+module.exports = seed
