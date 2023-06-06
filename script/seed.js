@@ -30,16 +30,18 @@ async function seed() {
   ])
 
   users[0].addOrder(orders[0]); //order: 1, user: cody
-  orders[0].addProduct(products[0]) //product: roses and daisies
-  orders[0].addProduct(products[1])
+  products[0].addOrder(orders[0]) //product: roses and daisies
+  products[1].addOrder(orders[0])
 
   users[1].addOrder(orders[1]); //oder: 2, user: murphy
-  orders[0].addProduct(products[0]) //product: roses and daisies
-  orders[0].addProduct(products[1])
+  products[0].addOrder(orders[1]) //product: roses and daisies
+  products[1].addOrder(orders[1])
 
   users[1].addOrder(orders[2]); //oder: 2, user: murphy
-  orders[0].addProduct(products[0]) //product: roses
+  products[0].addOrder(orders[2]) //product: roses
 
+  users[0].addProduct(products[1]);
+  
   console.log(`seeded successfully`)
   return {
     users: {
