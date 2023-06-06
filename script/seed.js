@@ -40,6 +40,8 @@ async function seed() {
   users[1].addOrder(orders[2]); //oder: 2, user: murphy
   products[0].addOrder(orders[2]) //product: roses
 
+  users[0].addProduct(products[1]);
+  
   console.log(`seeded successfully`)
   return {
     users: {

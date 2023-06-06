@@ -19,7 +19,3 @@ router.get('/:userId', async(req, res, next) => {
     next(err);
   }
 })
-
-//first, get order number for a specific user
-//then, look at the order products table to get the products of that order
-//return the products of that order
