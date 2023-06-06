@@ -41,8 +41,7 @@ async function seed() {
       description: "lots of peonies",
     }),
     Product.create({ name: "orchid", 
-    price: "35.00", 
-    description: "orchids" }),
+    price: "35.00", description: "orchids" }),
   ]);
   console.log("Products:");
   products.forEach((product) => {

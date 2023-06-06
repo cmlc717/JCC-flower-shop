@@ -22,7 +22,7 @@ const Home = () => {
             <h3>{product.name}</h3>
             <p>Price: ${product.price.toFixed(2)}</p>
             <p>{product.description}</p>
-            {product.imageUrl && <img src={product.imageUrl} alt={product.name} />}
+            <button
           </div>
         ))}
       </div>
