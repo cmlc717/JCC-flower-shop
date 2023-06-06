@@ -16,6 +16,19 @@ const User = db.define('user', {
   },
   type: {
     type: Sequelize.STRING,
+  },
+  email: {
+    type: Sequelize.STRING,
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  },
+  address: {
+    type: Sequelize.STRING,
+  },
+  cardNumber: {
+    type: Sequelize.INTEGER
   }
 })
 

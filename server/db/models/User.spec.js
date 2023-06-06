@@ -52,4 +52,21 @@ describe('User model', () => {
       });
     }) // end describe('authenticate')
   }) // end describe('instanceMethods')
+
+  describe('valid data', () => {
+    it('only allows an email to be used once', async() => {
+      try {
+        await User.create({
+          username: 'Ren',
+          password: '123',
+          email: 'cody@pug.org',
+          address: "1 Fullstack Ave", 
+          cardNumber: 1234
+        })
+      } catch (err) {
+        expect(err.name).to.equal('SequelizeUniqueConstraintError');
+      }
+    })
+  }) // end describe('valid data')
+  
 }) // end describe('User model')
