@@ -7,10 +7,10 @@ const Product = require('./models/Product')
 const Order = require('./models/Order')
 
 //associations could go here!
-Order.hasMany(Product); //many to many
+Order.belongsToMany(Product, {through: "orders-products"}); //many to many
 User.hasMany(Order); // many to one
 
-Product.belongsTo(Order);
+Product.belongsToMany(Order, {through: "orders-products"});
 Order.belongsTo(User);
 
 module.exports = {
