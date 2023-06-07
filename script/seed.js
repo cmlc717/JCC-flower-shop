@@ -45,14 +45,6 @@ async function seed() {
     description: "orchids" }),
   ]);
 
-  console.log("Products:");
-  products.forEach((product) => {
-    console.log(`Name: ${product.name}`);
-    console.log(`Price: $${product.price}`);
-    console.log(`Description: ${product.description}`);
-    console.log("---");
-  });
-
   // Creating Orders
   const orders = await Promise.all([
     Order.create({ number: 1 }),
