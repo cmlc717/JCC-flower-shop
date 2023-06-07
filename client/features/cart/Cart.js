@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.items);
+  const cartItems = JSON.parse(sessionStorage.getItem('cart'));
 
   return (
     <div>

@@ -24,25 +24,32 @@ async function seed() {
       name: "roses",
       price: "20.00",
       description: "lots of roses",
+      quantity: 1
     }),
     Product.create({
       name: "daisies",
       price: "10.00",
-      description: "lots of daisies",
+      description: "lots of daisies",      
+      quantity: 1
     }),
     Product.create({
       name: "tulips",
       price: "15.00",
       description: "lots of tulips",
+      quantity: 1
     }),
     Product.create({
       name: "peonies",
       price: "30.00",
       description: "lots of peonies",
+      quantity: 1
     }),
-    Product.create({ name: "orchid", 
-    price: "35.00", 
-    description: "orchids" }),
+    Product.create({ 
+      name: "orchid", 
+      price: "35.00", 
+      description: "orchids",
+      quantity: 1
+    }),
   ]);
 
   // Creating Orders

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-// import { addToCart } from "../features/cart/cartSlice";
+import { addToStorage } from "./ProductSlice";
 
 const SingleProduct = () => {
   const [product, setProduct] = useState({});
@@ -42,7 +42,7 @@ const SingleProduct = () => {
         <h3>Price: ${product.price}</h3>
         <h3>Description: </h3>
         <p>{product.description}</p>
-        <button onClick={() => addToCart(product.id)}>Add to Cart</button>
+        <button onClick={() => addToStorage(product)}>Add to Cart</button>
       </div>
     </div>
   );
