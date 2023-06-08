@@ -6,7 +6,7 @@ import React, { useEffect } from "react";
 const SingleOrder = (props) => {
   const { order } = props;
   let orderId = order[0].orderId;
-console.log(order)
+
   return (
     <div>
         <h4>Order Number: {orderId}</h4>
