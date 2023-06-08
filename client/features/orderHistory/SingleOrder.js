@@ -5,16 +5,18 @@ import React, { useEffect } from "react";
  */
 const SingleOrder = (props) => {
   const { order } = props;
-  let products = order.products;
-
+  let orderId = order[0].orderId;
+console.log(order)
   return (
     <div>
-        <h4>Order Number: {order.number}</h4>
-        {products.map(product => {
+        <h4>Order Number: {orderId}</h4>
+        {order.map(orderProduct => {
             return (
                 <div>
-                    <p>Product Name: {product.name}</p>
-                    <img src={product.imageUrl} />
+                  {console.log(orderProduct.product.name)}
+                    <p>Product Name: {orderProduct.product.name}</p>
+                    <p>Quantity: {orderProduct.productQty}</p>
+                    <img src={orderProduct.product.imageUrl} />
                 </div>
             );
         })}

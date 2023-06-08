@@ -15,7 +15,7 @@ const OrderHistory = (props) => {
   useEffect(() => {
     dispatch(fetchOrderHistoryAsync(id));
   }, [dispatch]);
-
+console.log(orderHistory)
   return (
     <div>
       <h3>{username}'s order history</h3>
