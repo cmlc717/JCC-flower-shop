@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Product, Order },
+  models: { User, Product, Order, OrdersProducts, UserProducts },
 } = require("../server/db/index");
 /**
  * seed - this function clears the database, updates tables to
@@ -74,10 +74,6 @@ async function seed() {
   users[0].addProduct(products[2]);
   users[0].addProduct(products[1]);
   users[0].addProduct(products[3]);
-
-  //updating quantity 
-  products[3].update({quantity: 2});
-  products[3].save();
 
   console.log(`seeded successfully`);
   return {

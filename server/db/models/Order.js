@@ -15,7 +15,8 @@ const Order = db.define('order', {
         type: Sequelize.INTEGER,
     },
     shipping: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
+        defaultValue: 5.95
     }
 })
 
