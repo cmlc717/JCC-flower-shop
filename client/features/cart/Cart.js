@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const cartItems = JSON.parse(sessionStorage.getItem('cart'));
 
+  //calculate quantities
+  
+  //calculate total
+
   return (
     <div>
       <h2>Cart</h2>
