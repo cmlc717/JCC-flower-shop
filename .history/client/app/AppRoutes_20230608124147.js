@@ -8,7 +8,7 @@ import { me } from "./store";
 import Products from "../features/products/Products";
 import Cart from "../features/cart/Cart";
 import SingleProduct from "../features/products/SingleProducts";
-import Checkout from "../features/cart/checkout";
+import Checkout from "../features/cart";
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
