@@ -24,25 +24,32 @@ async function seed() {
       name: "roses",
       price: "20.00",
       description: "lots of roses",
+      quantity: 1
     }),
     Product.create({
       name: "daisies",
       price: "10.00",
-      description: "lots of daisies",
+      description: "lots of daisies",      
+      quantity: 1
     }),
     Product.create({
       name: "tulips",
       price: "15.00",
       description: "lots of tulips",
+      quantity: 1
     }),
     Product.create({
       name: "peonies",
       price: "30.00",
       description: "lots of peonies",
+      quantity: 1
     }),
-    Product.create({ name: "orchid", 
-    price: "35.00", 
-    description: "orchids" }),
+    Product.create({ 
+      name: "orchid", 
+      price: "35.00", 
+      description: "orchids",
+      quantity: 1
+    }),
   ]);
 
   // Creating Orders
@@ -64,7 +71,13 @@ async function seed() {
   products[0].addOrder(orders[2]); //product: roses
 
   // Adding products to users (cart)
+  users[0].addProduct(products[2]);
   users[0].addProduct(products[1]);
+  users[0].addProduct(products[3]);
+
+  //updating quantity 
+  products[3].update({quantity: 2});
+  products[3].save();
 
   console.log(`seeded successfully`);
   return {
