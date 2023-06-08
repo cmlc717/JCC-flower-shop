@@ -59,18 +59,5 @@ form div {
 
 #cost-box {
   float: right;
-  /* width: 30%; */
-}
-
-#total-amount {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.cart{
-  margin: 2em;
-}
-
-h2 {
-  text-align: center;
+  width: 30%;
 }
