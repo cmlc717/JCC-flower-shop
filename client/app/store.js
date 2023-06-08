@@ -4,13 +4,15 @@ import authReducer from '../features/auth/authSlice';
 import cartReducer from "../features/cart/cartSlice";
 import orderHistoryReducer from '../features/orderHistory/OrderHistorySlice';
 import productsReducer from '../features/products/ProductSlice';
+import orderDetailsReducer from '../features/orderHistory/OrderDetailsSlice';
 
 const store = configureStore({
   reducer: { 
     auth: authReducer,
     cart: cartReducer,
     orderHistory: orderHistoryReducer,
-    products: productsReducer
+    products: productsReducer,
+    orderDetails: orderDetailsReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

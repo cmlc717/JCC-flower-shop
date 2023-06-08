@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
 
 router.get('/:userId', async(req, res, next) => {
   try {
@@ -22,4 +22,13 @@ router.get('/:userId', async(req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
+
+router.get('/orderDetails/:orderId', async(req, res, next) => {
+  try {
+    const order = await Order.findOne({where: {id: req.params.orderId}});
+    res.json(order);
+  } catch (err) {
+    next(err);
+  }
+});

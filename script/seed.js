@@ -59,16 +59,22 @@ async function seed() {
     Order.create({ number: 3 }),
   ]);
 
+  let date = new Date();
   users[0].addOrder(orders[0]); //order: 1, user: cody
   products[0].addOrder(orders[0]); //product: roses and daisies
   products[1].addOrder(orders[0]);
+  await orders[0].update({total: 30, tax: 3, date: date.getDate()})
 
   users[1].addOrder(orders[1]); //oder: 2, user: murphy
   products[0].addOrder(orders[1]); //product: roses and daisies
   products[1].addOrder(orders[1]);
+  await orders[1].update({total: 30, tax: 3, date: date.getDate()})
+
 
   users[1].addOrder(orders[2]); //oder: 2, user: murphy
   products[0].addOrder(orders[2]); //product: roses
+  await orders[2].update({total: 20, tax: 2, date: date.getDate()})
+
 
   // Adding products to users (cart)
   users[0].addProduct(products[2]);
