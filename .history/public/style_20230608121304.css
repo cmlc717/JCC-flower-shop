@@ -1,0 +1,61 @@
+body {
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+  
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+#cart-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+#cart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.cart-item-header {
+  flex-basis: 33.33%;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.cart-item-name {
+  flex-basis: 33.33%;
+}
+
+.cart-item-price {
+  flex-basis: 33.33%;
+}
+
+#cost-box {
+  margin-top: 20px;
+}
+
+#total-amount {
+  font-size: 18px;
+  font-weight: bold;
+}
