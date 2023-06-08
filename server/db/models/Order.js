@@ -6,16 +6,17 @@ const Order = db.define('order', {
         type: Sequelize.INTEGER,
     },
     total: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
     },
     date: {
         type: Sequelize.DATE,
     },
     tax: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
     },
     shipping: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
+        defaultValue: 5.95
     }
 })
 

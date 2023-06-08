@@ -22,13 +22,23 @@ describe('Products routes', () => {
       expect(res.body.length).to.equal(3);
     })
 
-    it('GET /api/orders/:userId', async () => {
+    it('GET /api/orders/:userId with products and product qty', async () => {
         const res = await request(app)
           .get('/api/orders/1')
           .expect(200)
-  
+
         expect(res.body).to.be.an('array');
-        expect(res.body.length).to.equal(1);
+        expect(res.body[0][0].productQty).to.equal(1);
+        expect(res.body[0][0].product).to.an('object');
     })
+
+    it('GET /api/orders/orderDetails/:orderId with more information about each order', async () => {
+      const res = await request(app)
+        .get('/api/orders/orderDetails/1')
+        .expect(200)
+        
+      expect(res.body).to.be.an('object');
+      expect(res.body.total).to.equal(30);
+  })
   }) // end describe('/api/users')
 }) // end describe('User routes')
