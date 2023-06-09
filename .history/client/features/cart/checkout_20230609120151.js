@@ -35,8 +35,6 @@ const Checkout = () => {
       expirationDate: "",
       cvv: "",
     });
-    // Clear the cart
-    sessionStorage.removeItem("cart");
   };
 
   const generateOrderNumber = () => {
@@ -49,7 +47,7 @@ const Checkout = () => {
     <div>
       <h2>Checkout</h2>
       <form onSubmit={handleSubmit}>
-      <label>
+        <label>
           Card Number:
           <input
             type="text"

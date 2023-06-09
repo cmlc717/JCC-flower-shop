@@ -35,8 +35,6 @@ const Checkout = () => {
       expirationDate: "",
       cvv: "",
     });
-    // Clear the cart
-    sessionStorage.removeItem("cart");
   };
 
   const generateOrderNumber = () => {
@@ -49,7 +47,7 @@ const Checkout = () => {
     <div>
       <h2>Checkout</h2>
       <form onSubmit={handleSubmit}>
-      <label>
+        <label>
           Card Number:
           <input
             type="text"
@@ -97,8 +95,8 @@ const Checkout = () => {
           <h4>Order number: #{orderNumber}</h4>
           <p>Your package is being processed and will shortly be shipped.</p>
           <p>
-            To check your order history, please click{" "}
-            <Link to="/orderHistory">here</Link>.
+            Click {" "} to check your orders
+            <Link to="/orderHistory">here</Link>
           </p>
         </div>
       )}

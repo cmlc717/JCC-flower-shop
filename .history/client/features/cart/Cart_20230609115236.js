@@ -28,6 +28,7 @@ const Cart = () => {
         });
       })
       .catch((error) => {
+        // Handle any error that occurred during removal
         console.log('Error removing product:', error);
       });
   };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -10,7 +9,6 @@ const Checkout = () => {
   });
 
   const [orderNumber, setOrderNumber] = useState(null);
-  const [orderCompleted, setOrderCompleted] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +25,6 @@ const Checkout = () => {
     // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
-    setOrderCompleted(true);
     // Reset the form after submission
     setCreditCard({
       cardNumber: "",
@@ -35,8 +32,6 @@ const Checkout = () => {
       expirationDate: "",
       cvv: "",
     });
-    // Clear the cart
-    sessionStorage.removeItem("cart");
   };
 
   const generateOrderNumber = () => {
@@ -48,8 +43,9 @@ const Checkout = () => {
   return (
     <div>
       <h2>Checkout</h2>
+      {orderNumber && <p>Order Number: {orderNumber}</p>}
       <form onSubmit={handleSubmit}>
-      <label>
+        <label>
           Card Number:
           <input
             type="text"
@@ -91,17 +87,6 @@ const Checkout = () => {
         <br />
         <button type="submit">Submit</button>
       </form>
-      {orderCompleted && (
-        <div>
-          <h3>We got it!</h3>
-          <h4>Order number: #{orderNumber}</h4>
-          <p>Your package is being processed and will shortly be shipped.</p>
-          <p>
-            To check your order history, please click{" "}
-            <Link to="/orderHistory">here</Link>.
-          </p>
-        </div>
-      )}
     </div>
   );
 };

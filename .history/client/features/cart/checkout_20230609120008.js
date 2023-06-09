@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -35,8 +34,6 @@ const Checkout = () => {
       expirationDate: "",
       cvv: "",
     });
-    // Clear the cart
-    sessionStorage.removeItem("cart");
   };
 
   const generateOrderNumber = () => {
@@ -49,7 +46,7 @@ const Checkout = () => {
     <div>
       <h2>Checkout</h2>
       <form onSubmit={handleSubmit}>
-      <label>
+        <label>
           Card Number:
           <input
             type="text"
@@ -94,12 +91,8 @@ const Checkout = () => {
       {orderCompleted && (
         <div>
           <h3>We got it!</h3>
-          <h4>Order number: #{orderNumber}</h4>
-          <p>Your package is being processed and will shortly be shipped.</p>
-          <p>
-            To check your order history, please click{" "}
-            <Link to="/orderHistory">here</Link>.
-          </p>
+          <h4>Order number:  #{orderNumber}</h6>
+          <p>Your package is being process and will shortly be shipped.</p>
         </div>
       )}
     </div>
