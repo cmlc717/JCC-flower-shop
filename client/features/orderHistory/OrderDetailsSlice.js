@@ -14,7 +14,6 @@ export const fetchOrderDetails = createAsyncThunk('orderDetails', async (orderId
   try {
     if (token) {
       const res = await axios.get(`/api/orders/orderDetails/${orderId}`);
-      console.log(res.data)
       return res.data;
     } else {
       return {};
