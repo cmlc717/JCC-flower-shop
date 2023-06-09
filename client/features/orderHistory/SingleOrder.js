@@ -16,15 +16,16 @@ const SingleOrder = (props) => {
   }, [dispatch]);
 
   return (
-    <div className="orderhistory">
+    <div className="orderhistory" id="orderBox">
         <h4>Order Number: {orderId}</h4>
         <p>Total: {orderDetails.total}</p>
         <p>Shipping: {orderDetails.shipping}</p>
         <p>Tax: {orderDetails.tax}</p>
+        <h5>Products Ordered</h5>
         {order.map(orderProduct => {
             return (
                 <div>
-                    <p>Product Name: {orderProduct.product.name}</p>
+                    <p>{orderProduct.product.name}</p>
                     <p>Quantity: {orderProduct.productQty}</p>
                     <img src={orderProduct.product.imageUrl} />
                 </div>

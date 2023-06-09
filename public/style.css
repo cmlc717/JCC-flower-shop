@@ -16,10 +16,20 @@ nav a {
   
 }
 
+nav {
+  font-family: sans-serif;
+  background-color: #bde0fe;
+  margin: 10vh;
+  border-radius: 25px;
+  text-align: center;
+  border: 5px solid white;
+}
+
 form div {
   margin: 1em;
   display: inline-block;
 }
+
 #cart-items {
   list-style-type: none;
   padding: 0;
@@ -81,12 +91,16 @@ body {
   margin: 0;
   padding: 0;
 }
+
 h1{
   text-align: center;
-  margin-top: 2em;
   color: #FF7F50;
-  text-shadow: 2px 4px 4px rgba(46,91,173,0.6);
+  text-shadow: 2px 2px 3px white;
+  border-bottom: 5px dotted #FF7F50;
+  margin: 30px;
+  margin-bottom: 50px;
 }
+
 a {
   display: inline-block;
   margin: 0 1em;
@@ -98,9 +112,11 @@ a {
 #price{
   color:black;
 }
+
 .singleProduct-box {
   color: #FF7F50;
 }
+
 a:hover {
   color: #5d4444;
 }
@@ -148,13 +164,17 @@ input[type="text"] {
 }
 
 button{
-  background-color: #fff; /* White background color */
-  color: #FF7F50; /* Text color */
-  border: 1px solid #FF7F50; /* Border color */
+  background-color: #e6d7f0; 
+  color: #FF7F50; 
+  border: 1px solid #FF7F50;
   padding: 0.5em 1em;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #cdb4db;
 }
 
 img{
@@ -171,7 +191,19 @@ img{
 .product-card{
   padding:1em;
   text-align: center;
+  margin: 50px;
+  border-radius: 25px;
+  border: 5px solid white;
 }
+
+.product-card:nth-child(2n+1) {
+  background-color: #bde0fe;
+}
+
+.product-card:nth-child(2n) {
+  background-color: #cdb4db;
+}
+
 .singleProduct-box{
   text-align: center;
 }
@@ -187,4 +219,34 @@ img{
 .orderhistory{
   text-align: center;
   background-color: #f0cfcf;
+  margin: 10vw;
+  padding: 20px;
+  border-radius: 25px;
+  border: 5px solid white;
+}
+
+.orderHistoryContainer {
+  text-align: center;
+}
+
+#orderBox:nth-child(2n+1) {
+  background-color: #cdb4db;
+}
+
+#orderBox:nth-child(2n) {
+  background-color: #a2d2ff;
+}
+
+p {
+  color: #780000
+}
+
+.title {
+  color: #c898e4;
+  text-shadow: 1px 1px 2px white;
+
+}
+
+#homeContainer {
+  text-align: center;
 }
