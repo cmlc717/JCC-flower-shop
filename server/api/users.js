@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const { current } = require('@reduxjs/toolkit');
-const { db, models: { User, Product, UserProducts }} = require('../db')
+const { models: { User, Product, UserProducts }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -44,4 +44,13 @@ router.post('/saveMyCart/:userId', async (req, res, next) => {
   } catch (ex) {
     next(ex);
   }
-})
+});
+
+router.get('/getMyCart/:userId', async (req, res, next) => {
+  try {
+    const currentCart = await UserProducts.findAll({where: {userId: req.params.userId}, include: {model: Product}});
+    res.json(currentCart);
+  } catch (ex) {
+    next(ex);
+  }
+});
