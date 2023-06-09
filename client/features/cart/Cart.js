@@ -52,7 +52,7 @@ const calculateTotal = () => {
 
   return (
     <div>
-      <h2 id="header-cart">Cart</h2>
+      <h2 className = "title" id="header-cart">Cart</h2>
       {!cartItems || cartItems.length === 0? (
         <p>No items in the cart</p>
       ) : (

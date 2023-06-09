@@ -6,8 +6,8 @@ const Home = () => {
   const username = useSelector((state) => state.auth.me.username);
 
   return (
-    <div>
-      <h3>Hello, {username}</h3>
+    <div id="homeContainer">
+      <h2 className="title">Hello, {username}</h2>
       <Products />
     </div>
   );
