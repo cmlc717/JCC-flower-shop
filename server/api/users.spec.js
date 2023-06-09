@@ -19,7 +19,7 @@ describe('User routes', () => {
         .expect(200)
 
       expect(res.body).to.be.an('array');
-      expect(res.body.length).to.equal(2);
+      expect(res.body.length).to.equal(3);
     })
   }) // end describe('/api/users')
 
@@ -27,15 +27,9 @@ describe('User routes', () => {
     it('POST  /api/users/saveMyCart/2', async() => {
       const res = await request(app)
         .post('/api/users/saveMyCart/2')
-        .send([{createdAt: "2023-06-08T20:03:43.578Z", 
-          description: "lots of roses",
-          id: 1,
-          imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Bachelor%27s_button%2C_Basket_flower%2C_Boutonniere_flower%2C_Cornflower_-_3.jpg/640px-Bachelor%27s_button%2C_Basket_flower%2C_Boutonniere_flower%2C_Cornflower_-_3.jpg",
-          name: "roses",
-          price: 20,
-          updatedAt: "2023-06-08T20:03:43.578Z"}]
-        ) // the HTTP request body
-      
+        .send([[1, 1], [2, 2], [3,3]]) // the HTTP request body [id, qty]
+      expect(res.body).to.be.an('array');
+      expect(res.body.length).to.equal(3);
     })
 
   })

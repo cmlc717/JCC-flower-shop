@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { models: { User, Product }} = require('../db')
+const { current } = require('@reduxjs/toolkit');
+const { db, models: { User, Product, UserProducts }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -19,10 +20,30 @@ router.get('/', async (req, res, next) => {
 router.post('/saveMyCart/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({where: {id: req.params.userId}, include: {model: Product}});
-    let array = req.body;
-    (async (product) => await user.addProduct(product));
+    let products = req.body;
+    const productObjects = await Promise.all(products.map(async(array) => {
+      let productObj = await Product.findOne({where: {id: array[0]}});
+      return productObj;
+    }));
 
-    res.json(user)
+    await user.addProducts(productObjects);
+    await user.update({products: productObjects});
+    await user.save();
+    
+    const currentCart = await UserProducts.findAll();
+
+    for (let i = 0; i < currentCart.length; i++) {
+      for (let j = 0; j < products.length; j++) {
+        if (currentCart[i].dataValues.productId === products[j][0]) {
+          console.log("added item", currentCart[i].dataValues.productId)
+          console.log("compared item", products[j][0])
+          await currentCart[i].update({productQty: products[j][1]});
+          await currentCart[i].save();
+        }
+      }
+    }
+
+    res.json(currentCart)
   } catch (ex) {
     next(ex);
   }
