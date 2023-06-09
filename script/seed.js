@@ -81,12 +81,6 @@ async function seed() {
   products[0].addOrder(orders[2]); //product: roses
   await orders[2].update({total: 20, tax: 2, date: date.getDate()})
 
-
-  // Adding products to users (cart)
-  users[0].addProduct(products[2]);
-  users[0].addProduct(products[1]);
-  users[0].addProduct(products[3]);
-
   console.log(`seeded successfully`);
   return {
     users: {
