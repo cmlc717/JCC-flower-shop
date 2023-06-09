@@ -16,7 +16,7 @@ const SingleOrder = (props) => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="orderhistory">
         <h4>Order Number: {orderId}</h4>
         <p>Total: {orderDetails.total}</p>
         <p>Shipping: {orderDetails.shipping}</p>

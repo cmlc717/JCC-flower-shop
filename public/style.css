@@ -183,3 +183,8 @@ img{
   padding:0;
   border:0;
 }
+
+.orderhistory{
+  text-align: center;
+  background-color: #f0cfcf;
+}
