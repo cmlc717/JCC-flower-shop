@@ -21,6 +21,7 @@ const Cart = () => {
     dispatch(removeProductFromStorage(productId))
       .unwrap()
       .then((productId) => {
+
         setQuantities((prevQuantities) => {
           const updatedQuantities = { ...prevQuantities };
           delete updatedQuantities[productId];
@@ -28,6 +29,7 @@ const Cart = () => {
         });
       })
       .catch((error) => {
+        // Handle any error that occurred during removal
         console.log('Error removing product:', error);
       });
   };

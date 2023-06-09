@@ -49,46 +49,7 @@ const Checkout = () => {
     <div>
       <h2>Checkout</h2>
       <form onSubmit={handleSubmit}>
-      <label>
-          Card Number:
-          <input
-            type="text"
-            name="cardNumber"
-            value={creditCard.cardNumber}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Card Holder:
-          <input
-            type="text"
-            name="cardHolder"
-            value={creditCard.cardHolder}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          Expiration Date:
-          <input
-            type="text"
-            name="expirationDate"
-            value={creditCard.expirationDate}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label>
-          CVV:
-          <input
-            type="text"
-            name="cvv"
-            value={creditCard.cvv}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
+        {/* Form fields */}
         <button type="submit">Submit</button>
       </form>
       {orderCompleted && (
