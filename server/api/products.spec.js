@@ -21,5 +21,5 @@ describe('Products routes', () => {
       expect(res.body).to.be.an('array');
       expect(res.body.length).to.equal(5);
     })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+  }) // end describe('/api/products')
+}) // end describe('Products routes')

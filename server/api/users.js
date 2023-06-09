@@ -29,14 +29,11 @@ router.post('/saveMyCart/:userId', async (req, res, next) => {
     await user.addProducts(productObjects);
     await user.update({products: productObjects});
     await user.save();
-    
-    const currentCart = await UserProducts.findAll();
 
+    const currentCart = await UserProducts.findAll({where: {userId: req.params.userId}});
     for (let i = 0; i < currentCart.length; i++) {
       for (let j = 0; j < products.length; j++) {
         if (currentCart[i].dataValues.productId === products[j][0]) {
-          console.log("added item", currentCart[i].dataValues.productId)
-          console.log("compared item", products[j][0])
           await currentCart[i].update({productQty: products[j][1]});
           await currentCart[i].save();
         }

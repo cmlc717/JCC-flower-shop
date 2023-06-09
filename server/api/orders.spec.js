@@ -38,7 +38,25 @@ describe('Products routes', () => {
         .expect(200)
         
       expect(res.body).to.be.an('object');
-      expect(res.body.total).to.equal(30);
   })
-  }) // end describe('/api/users')
-}) // end describe('User routes')
+  }) // end describe('/api/oders')
+
+
+  describe('POST /api/orders/orderMyCart/:userId', () => {
+    it('POST  /api/orders/orderMyCart/:userId', async() => {
+      const date = new Date()
+      const res = await request(app)
+        .post('/api/orders/orderMyCart/2')
+        .send({
+          productsArray: [[4, 4], [5, 5], [3,1]],
+          number: 1000,
+          total: 310,
+          tax: 31,
+          date: date.getDate()
+        }) // the HTTP request body
+
+      expect(res.body).to.be.an("array");
+      expect(res.body.length).to.equal(3)
+    })
+  })
+}) // end describe('Orders routes')

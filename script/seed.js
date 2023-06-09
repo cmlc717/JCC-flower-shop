@@ -10,7 +10,6 @@ const {
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log("db synced!");
 
   // Creating Users
   const users = await Promise.all([
@@ -81,7 +80,6 @@ async function seed() {
   products[0].addOrder(orders[2]); //product: roses
   await orders[2].update({total: 20, tax: 2, date: date.getDate()})
 
-  console.log(`seeded successfully`);
   return {
     users: {
       cody: users[0],
