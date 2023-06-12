@@ -20,10 +20,6 @@ const Checkout = () => {
   const [ userLoggedsetUserLoggedIn] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
-  const dispatch = useDispatch();
-
-  const userId = useSelector((state) => state.auth.me.id);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -175,7 +171,7 @@ const Checkout = () => {
       )}
 
       {guestCheckout && (
-        <div>
+        <div className='guest-checkout'>
           <h2>Guest Checkout</h2>
           <form onSubmit={handleSubmit}>
             <label>
