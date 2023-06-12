@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrderHistoryAsync } from "./OrderHistorySlice";
 import SingleOrder from "./SingleOrder";
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * COMPONENT
@@ -19,7 +20,7 @@ const OrderHistory = (props) => {
   return (
     <div className="orderHistoryContainer">
       <h2 className="title">{username}'s order history</h2>
-      {orderHistory.map((order) => <SingleOrder key={order.id} order={order}/>)}
+      {orderHistory.map((order) => <SingleOrder key={uuidv4()} order={order}/>)}
     </div>
   );
 };

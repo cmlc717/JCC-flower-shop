@@ -1,9 +1,3 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-/*
-  Functions
-*/
 export const addToStorage = (product) => {
   let currentCart = JSON.parse(sessionStorage.getItem('cart'));
   if (currentCart) {
@@ -24,32 +18,3 @@ export const removeFromStorage = (productId) => {
     sessionStorage.setItem("cart", JSON.stringify(updatedCart));
   }
 };
-
-/*
-  THUNKS
-*/
-export const removeProductFromStorage = createAsyncThunk(
-  'products/removeFromStorage',
-  async (productId) => {
-    removeFromStorage(productId); 
-    return productId; 
-  }
-);
-
-/*
-  SLICE
-*/
-export const ProductsSlice = createSlice({
-  name: 'products',
-  initialState: [],
-  reducers: {},
-  extraReducers: (builder) => {
-
-  },
-});
-
-/*
-  REDUCER
-*/
-export default ProductsSlice.reducer;
-// export { removeProductFromStorage };

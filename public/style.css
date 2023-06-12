@@ -69,6 +69,7 @@ form div {
 
 #cost-box {
   float: right;
+  text-align: CENTER;
   /* width: 30%; */
 }
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { placeOrder } from "./cartSlice";
+import { useDispatch } from "react-redux";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -11,6 +13,10 @@ const Checkout = () => {
 
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
+  const dispatch = useDispatch();
+
+  const userId = useSelector((state) => state.auth.me.id);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,12 +28,12 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic, e.g., send data to server or perform validation
-    console.log("Form submitted:", creditCard);
     // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Send order to database
+    dispatch(placeOrder({userId, }))
     // Reset the form after submission
     setCreditCard({
       cardNumber: "",
