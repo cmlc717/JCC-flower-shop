@@ -4,13 +4,10 @@ import Products from "../products/Products";
 
 const Home = () => {
   const username = useSelector((state) => state.auth.me.username);
-
-  // Capitalize the first letter of the username if it is defined
-  const capitalizedUsername = username ? username.charAt(0).toUpperCase() + username.slice(1) : '';
-
+  const capitalizedUsername = username.charAt(0).toUpperCase() + username.slice(1);
   return (
     <div id="homeContainer">
-      <h2 className="title">Hello, {capitalizedUsername}!</h2>
+      <h2 className="title">Hello, {username}!</h2>
       <Products />
     </div>
   );
