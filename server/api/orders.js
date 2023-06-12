@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { models: { Order, Product, User, OrdersProducts }} = require('../db');
+const { models: { Order, Product, User, OrdersProducts, UserProducts }} = require('../db');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
@@ -60,8 +60,15 @@ router.post('/orderMyCart/:userId', async (req, res, next) => {
       }
     }
 
-    res.json(currentOrderProducts)
+    clearCart(req.params.userId);
+
+    res.json(currentOrderProducts);
   } catch (ex) {
     next(ex);
   }
 })
+
+async function clearCart(userId) {
+  let userProducts = await UserProducts.findAll({where: {userId: userId}});
+  await userProducts.forEach((userProduct) => userProduct.destroy());
+}
