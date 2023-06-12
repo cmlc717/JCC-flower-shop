@@ -39,7 +39,6 @@ describe('User routes', () => {
 
       const res2 = await request(app)
         .get('/api/users/getMyCart/2')
-        console.log(res2)
       expect(res2.body).to.be.an('array');
       expect(res2.body.length).to.equal(3);
     })
