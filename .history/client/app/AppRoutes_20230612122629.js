@@ -9,6 +9,7 @@ import Products from "../features/products/Products";
 import Cart from "../features/cart/Cart";
 import SingleProduct from "../features/products/SingleProducts";
 import Checkout from "../features/cart/checkout";
+import Navbar from "../features/navbar/Navbar";
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -20,6 +21,7 @@ const AppRoutes = () => {
 
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/*" element={<Home />} />
         {isLoggedIn ? (
@@ -43,7 +45,6 @@ const AppRoutes = () => {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<SingleProduct />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

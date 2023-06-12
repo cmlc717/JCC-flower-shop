@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-  
+
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
@@ -8,8 +8,6 @@ const Checkout = () => {
     expirationDate: "",
     cvv: "",
   });
-
-  
 
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
@@ -45,17 +43,21 @@ const Checkout = () => {
     e.preventDefault();
 
     if (guestCheckout) {
+      // Handle guest checkout logic here
       console.log("Guest checkout:", {
         ...creditCard,
         ...guestInfo,
       });
     } else {
+      // Handle regular checkout logic here
       console.log("Regular checkout:", creditCard);
     }
 
+    // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",
@@ -81,14 +83,14 @@ const Checkout = () => {
     <div>
       {!guestCheckout && (
         <div>
-        <h2>Checkout</h2>
-          <div className="checkout-options">
-            <div className="option sign-in-sign-up">
+          <h2>Checkout</h2>
+          <div>
+            <div className='Signi'>
               <h3>Log In or Sign Up</h3>
               <p>Log in or create an account to proceed with the checkout.</p>
               <Link to="/login">Sign In</Link> | <Link to="/signup">Sign Up</Link>
             </div>
-            <div className="option guest-checkout">
+            <div>
               <h3>Continue as Guest</h3>
               <p>Proceed with the checkout as a guest.</p>
               <button onClick={handleGuestCheckout}>Continue as Guest</button>

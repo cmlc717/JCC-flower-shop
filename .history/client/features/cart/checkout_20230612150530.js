@@ -9,7 +9,7 @@ const Checkout = () => {
     cvv: "",
   });
 
-  
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
@@ -56,6 +56,7 @@ const Checkout = () => {
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+
     setCreditCard({
       cardNumber: "",
       cardHolder: "",
@@ -80,6 +81,9 @@ const Checkout = () => {
   return (
     <div>
       {!guestCheckout && (
+         {isLoggedIn ? (
+
+         )}
         <div>
         <h2>Checkout</h2>
           <div className="checkout-options">

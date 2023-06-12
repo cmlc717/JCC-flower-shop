@@ -50,12 +50,15 @@ const Checkout = () => {
         ...guestInfo,
       });
     } else {
+      // Handle regular checkout logic here
       console.log("Regular checkout:", creditCard);
     }
 
+    // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",

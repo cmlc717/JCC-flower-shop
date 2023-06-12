@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-  
+import { useSelector } from "react-redux";
+
 const Checkout = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
     cardHolder: "",
     expirationDate: "",
     cvv: "",
-  });
-
-  
-
-  const [guestCheckout, setGuestCheckout] = useState(false);
-  const [guestInfo, setGuestInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
   });
 
   const [orderNumber, setOrderNumber] = useState(null);
@@ -29,43 +23,20 @@ const Checkout = () => {
     }));
   };
 
-  const handleGuestInfoChange = (e) => {
-    const { name, value } = e.target;
-    setGuestInfo((prevGuestInfo) => ({
-      ...prevGuestInfo,
-      [name]: value,
-    }));
-  };
-
-  const handleGuestCheckout = () => {
-    setGuestCheckout(true);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (guestCheckout) {
-      console.log("Guest checkout:", {
-        ...creditCard,
-        ...guestInfo,
-      });
-    } else {
-      console.log("Regular checkout:", creditCard);
-    }
-
+    // Handle form submission logic, e.g., send data to server or perform validation
+    console.log("Form submitted:", creditCard);
+    // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",
       expirationDate: "",
       cvv: "",
-    });
-    setGuestInfo({
-      firstName: "",
-      lastName: "",
-      email: "",
     });
     // Clear the cart
     sessionStorage.removeItem("cart");
@@ -79,58 +50,10 @@ const Checkout = () => {
 
   return (
     <div>
-      {!guestCheckout && (
+      {isLoggedIn ? (
         <div>
-        <h2>Checkout</h2>
-          <div className="checkout-options">
-            <div className="option sign-in-sign-up">
-              <h3>Log In or Sign Up</h3>
-              <p>Log in or create an account to proceed with the checkout.</p>
-              <Link to="/login">Sign In</Link> | <Link to="/signup">Sign Up</Link>
-            </div>
-            <div className="option guest-checkout">
-              <h3>Continue as Guest</h3>
-              <p>Proceed with the checkout as a guest.</p>
-              <button onClick={handleGuestCheckout}>Continue as Guest</button>
-            </div>
-          </div>
-        </div>
-      )}
-      {guestCheckout && (
-        <div>
-          <h2>Guest Checkout</h2>
+          <h2>Checkout</h2>
           <form onSubmit={handleSubmit}>
-            <label>
-              First Name:
-              <input
-                type="text"
-                name="firstName"
-                value={guestInfo.firstName}
-                onChange={handleGuestInfoChange}
-              />
-            </label>
-            <br />
-            <label>
-              Last Name:
-              <input
-                type="text"
-                name="lastName"
-                value={guestInfo.lastName}
-                onChange={handleGuestInfoChange}
-              />
-            </label>
-            <br />
-            <label>
-              Email Address:
-              <input
-                type="email"
-                name="email"
-                value={guestInfo.email}
-                onChange={handleGuestInfoChange}
-              />
-            </label>
-            <br />
-            <h3>Payment Information</h3>
             <label>
               Card Number:
               <input
@@ -173,6 +96,12 @@ const Checkout = () => {
             <br />
             <button type="submit">Submit</button>
           </form>
+        </div>
+      ) : (
+        <div>
+          <h2>Checkout</h2>
+          <p>Please log in to proceed with the checkout.</p>
+          <Link to="/login">Log In</Link>
         </div>
       )}
       {orderCompleted && (

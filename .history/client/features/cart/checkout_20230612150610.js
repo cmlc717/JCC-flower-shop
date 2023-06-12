@@ -9,7 +9,7 @@ const Checkout = () => {
     cvv: "",
   });
 
-  
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
@@ -56,6 +56,7 @@ const Checkout = () => {
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+
     setCreditCard({
       cardNumber: "",
       cardHolder: "",
@@ -80,6 +81,52 @@ const Checkout = () => {
   return (
     <div>
       {!guestCheckout && (
+         {isLoggedIn ? (
+  <h3>Payment Information</h3>
+            <label>
+              Card Number:
+              <input
+                type="text"
+                name="cardNumber"
+                value={creditCard.cardNumber}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Card Holder:
+              <input
+                type="text"
+                name="cardHolder"
+                value={creditCard.cardHolder}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Expiration Date:
+              <input
+                type="text"
+                name="expirationDate"
+                value={creditCard.expirationDate}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              CVV:
+              <input
+                type="text"
+                name="cvv"
+                value={creditCard.cvv}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+         )}
         <div>
         <h2>Checkout</h2>
           <div className="checkout-options">

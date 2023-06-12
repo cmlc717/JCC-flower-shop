@@ -53,9 +53,11 @@ const Checkout = () => {
       console.log("Regular checkout:", creditCard);
     }
 
+    // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",

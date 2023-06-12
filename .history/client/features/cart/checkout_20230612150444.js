@@ -9,7 +9,7 @@ const Checkout = () => {
     cvv: "",
   });
 
-  
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
@@ -56,6 +56,7 @@ const Checkout = () => {
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",

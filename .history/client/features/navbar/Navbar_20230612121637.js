@@ -13,7 +13,7 @@ const Navbar = () => {
     navigate("/login");
   };
 
-
+  // Get cart items count
   const cartItems = JSON.parse(sessionStorage.getItem("cart"));
 
   return (

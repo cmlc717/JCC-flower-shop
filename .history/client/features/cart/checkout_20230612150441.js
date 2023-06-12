@@ -9,7 +9,7 @@ const Checkout = () => {
     cvv: "",
   });
 
-  
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
@@ -45,6 +45,7 @@ const Checkout = () => {
     e.preventDefault();
 
     if (guestCheckout) {
+      // Handle guest checkout logic here
       console.log("Guest checkout:", {
         ...creditCard,
         ...guestInfo,
@@ -53,9 +54,11 @@ const Checkout = () => {
       console.log("Regular checkout:", creditCard);
     }
 
+    // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",

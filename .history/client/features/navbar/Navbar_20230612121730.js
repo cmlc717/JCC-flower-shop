@@ -13,7 +13,7 @@ const Navbar = () => {
     navigate("/login");
   };
 
-
+  // Get cart items count
   const cartItems = JSON.parse(sessionStorage.getItem("cart"));
 
   return (
@@ -36,7 +36,7 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/products">Flowers</Link>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart ({cartItems ? cartItems.length : 0})</Link> {/* Update cart count */}
           </div>
         )}
       </nav>

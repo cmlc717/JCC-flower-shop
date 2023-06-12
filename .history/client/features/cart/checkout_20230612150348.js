@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-  
+
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
@@ -8,8 +9,6 @@ const Checkout = () => {
     expirationDate: "",
     cvv: "",
   });
-
-  
 
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
@@ -45,17 +44,21 @@ const Checkout = () => {
     e.preventDefault();
 
     if (guestCheckout) {
+      // Handle guest checkout logic here
       console.log("Guest checkout:", {
         ...creditCard,
         ...guestInfo,
       });
     } else {
+      // Handle regular checkout logic here
       console.log("Regular checkout:", creditCard);
     }
 
+    // Generate random order number
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
     setOrderCompleted(true);
+    // Reset the form after submission
     setCreditCard({
       cardNumber: "",
       cardHolder: "",
