@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div id="homeContainer">
       <h2 className="title">
-        {username ? `Hello, ${capitalizedUsername}!` : "Welcome!"}
+        {username ? `🌼 Hello, ${capitalizedUsername}! 🌼` : "🌼 Welcome! 🌼"}
       </h2>
       <Products />
     </div>
