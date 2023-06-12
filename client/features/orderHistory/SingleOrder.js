@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrderDetails } from "./OrderDetailsSlice";
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * COMPONENT
@@ -24,7 +25,7 @@ const SingleOrder = (props) => {
         <h5>Products Ordered</h5>
         {order.map(orderProduct => {
             return (
-                <div>
+                <div key={uuidv4()}>
                     <p>{orderProduct.product.name}</p>
                     <p>Quantity: {orderProduct.productQty}</p>
                     <img src={orderProduct.product.imageUrl} />

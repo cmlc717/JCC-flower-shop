@@ -13,7 +13,7 @@ export const placeOrder = createAsyncThunk('placeOrder', async ({userId, product
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
-      const res = await axios.get(`/api/orders/orderMyCart/${userId}`, {productsArray, number, total, tax, date});
+      const res = await axios.post(`/api/orders/orderMyCart/${userId}`, {productsArray, number, total, tax, date});
     } else {
       return {};
     }
@@ -26,11 +26,12 @@ export const placeOrder = createAsyncThunk('placeOrder', async ({userId, product
   }
 });
 
-export const saveOrder = createAsyncThunk('saveOrder', async ({userId, productsArray}) => {
+export const saveOrder = createAsyncThunk('saveOrder', async ({userId, cart}) => {
   const token = window.localStorage.getItem(TOKEN);
+
   try {
     if (token) {
-      const res = await axios.get(`/api/users/saveMyCart/${userId}`, productsArray);
+      const res = await axios.post(`/api/users/saveMyCart/${userId}`, {cart});
       return res.data;
     } else {
       return [];

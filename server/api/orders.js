@@ -46,7 +46,7 @@ router.post('/orderMyCart/:userId', async (req, res, next) => {
     for (let i = 0; i < productObjects.length; i++) {
       await productObjects[i].addOrder(newOrder);
       await productObjects[i].update({order: newOrder});
-      await productObjects[i].save
+      await productObjects[i].save();
     }
     
     const currentOrderProducts = await OrdersProducts.findAll({where: {orderId: newOrder.id}});
