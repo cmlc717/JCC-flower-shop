@@ -15,6 +15,7 @@ const Navbar = () => {
 
   // Get cart items count
   const cartItems = JSON.parse(sessionStorage.getItem("cart"));
+  const cartItemCount = cartItems ? cartItems.length : 0;
 
   return (
     <div>

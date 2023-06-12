@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
 import Cart from "../cart/Cart";
 
+
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -12,9 +13,6 @@ const Navbar = () => {
     dispatch(logout());
     navigate("/login");
   };
-
-  // Get cart items count
-  const cartItems = JSON.parse(sessionStorage.getItem("cart"));
 
   return (
     <div>
@@ -36,7 +34,10 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/products">Flowers</Link>
-            <Link to="/cart">Cart</Link>
+            <Switch>
+               <Route exact path="/cart" component={Cart} />
+          {/* Your other routes */}
+        </Switch>
           </div>
         )}
       </nav>
