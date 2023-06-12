@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
 router.post('/saveMyCart/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({where: {id: req.params.userId}, include: {model: Product}});
-    let products = req.body;
+    let products = req.body.cart;
     const productObjects = await Promise.all(products.map(async(array) => {
       let productObj = await Product.findOne({where: {id: array[0]}});
       return productObj;

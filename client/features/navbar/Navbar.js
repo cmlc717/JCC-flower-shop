@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div>
       <nav>
-        <h1>JCC Flower Shop</h1>
+        <h1>🌸 JCC Flower Shop 🌸</h1>
         {isLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}

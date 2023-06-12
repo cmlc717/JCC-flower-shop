@@ -19,7 +19,7 @@ const OrderHistory = (props) => {
 
   return (
     <div className="orderHistoryContainer">
-      <h2 className="title">{username}'s order history</h2>
+      <h2 className="title">🌺 {username}'s order history 🌺</h2>
       {orderHistory.map((order) => <SingleOrder key={uuidv4()} order={order}/>)}
     </div>
   );

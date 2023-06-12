@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import { removeFromStorage } from "../products/ProductSlice";
 import { v4 as uuidv4 } from 'uuid';
 import { saveOrder } from "./cartSlice";
+import { useSelector, useDispatch } from 'react-redux';
 
 const Cart = () => {
   const cartItems = JSON.parse(sessionStorage.getItem("cart"));
-  // State to track quantities
   const [quantities, setQuantities] = useState([]);
   const [cart, setCart] = useState([]); //this will be sent to the backend since the id is easier to track
   const [changed, setChanged] = useState(false);
+  const savedCart = useSelector((state) => state.savedCart);
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.auth.me.id);
 
   // Set default quantities
   useEffect(() => {
@@ -63,29 +66,34 @@ const Cart = () => {
     setChanged(true);
   };
 
-// Calculate subtotal
-const calculateSubtotal = () => {
-  let subtotal = 0;
-  for (let i = 0; i < quantities.length; i++) {
-    const quantity = quantities[i][1];
-    const price = quantities[i][0].price;
-    subtotal += price * quantity;
-  }
-  return subtotal.toFixed(2);
-};
+  // Calculate subtotal
+  const calculateSubtotal = () => {
+    let subtotal = 0;
+    for (let i = 0; i < quantities.length; i++) {
+      const quantity = quantities[i][1];
+      const price = quantities[i][0].price;
+      subtotal += price * quantity;
+    }
+    return subtotal.toFixed(2);
+  };
 
-// Calculate total
-const calculateTotal = () => {
-  const subtotal = parseFloat(calculateSubtotal());
-  const tax = subtotal * 0.1;
-  const shipping = 5.95;
-  const total = subtotal + tax + shipping;
-  return total.toFixed(2);
-};
+  // Calculate total
+  const calculateTotal = () => {
+    const subtotal = parseFloat(calculateSubtotal());
+    const tax = subtotal * 0.1;
+    const shipping = 5.95;
+    const total = subtotal + tax + shipping;
+    return total.toFixed(2);
+  };
+
+  // Save cart to database for persisting cart
+  const handleSave = () => {
+    dispatch(saveOrder({userId, cart}));
+  }
 
   return (
     <div>
-      <h2 className = "title" id="header-cart">Cart</h2>
+      <h2 className = "title" id="header-cart">🌹 Cart 🌹</h2>
       {!cartItems || cartItems.length === 0? (
         <p>No items in the cart</p>
       ) : (
