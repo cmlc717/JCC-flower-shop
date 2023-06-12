@@ -12,7 +12,9 @@ const TOKEN = 'token';
 export const fetchOrderDetails = createAsyncThunk('orderDetails', async (orderId) => {
   const token = window.localStorage.getItem(TOKEN);
   try {
-    if (token) {
+    if (token) {      
+      console.log(orderId);
+
       const res = await axios.get(`/api/orders/orderDetails/${orderId}`);
       return res.data;
     } else {
