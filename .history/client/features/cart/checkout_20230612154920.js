@@ -17,7 +17,7 @@ const Checkout = () => {
     email: "",
   });
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const [ userLoggedsetUserLoggedIn] = useState(false);
+  const [ userLoggedIn, setUserLoggedIn] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
 
@@ -154,11 +154,10 @@ const Checkout = () => {
               <div className="option sign-in-sign-up">
                 <h3>Log In or Sign Up</h3>
                 <p>Log in or create an account to proceed with the checkout.</p>
-                {/* <button onClick={handleUserLogin}>Log In</button> |{" "}
-                 */}
-                  
-                <Link to="/login">Log In</Link>
+                <button onClick={handleUserLogin}>Log In</button> |{" "}
                 <Link to="/signup">Sign Up</Link>
+              </div>
+              <Link to="/signup">Sign Up</Link>
               </div>
               <div className="option guest-checkout">
                 <h3>Continue as Guest</h3>

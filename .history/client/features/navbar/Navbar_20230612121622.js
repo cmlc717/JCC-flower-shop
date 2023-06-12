@@ -2,20 +2,13 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../app/store";
-import Cart from "../cart/Cart";
+import Cart from "../cart/Cart"; // Import the Cart component
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const logoutAndRedirectHome = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
+  // ...
 
-  // Get cart items count
+  // Get cart items count from session storage
   const cartItems = JSON.parse(sessionStorage.getItem("cart"));
-
 
   return (
     <div>
@@ -25,7 +18,7 @@ const Navbar = () => {
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart ({cartItems ? cartItems.length : 0})</Link> {/* Update cart count */}
             <Link to="/orderHistory">Order History</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
@@ -37,7 +30,7 @@ const Navbar = () => {
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/products">Flowers</Link>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">Cart ({cartItems ? cartItems.length : 0})</Link> {/* Update cart count */}
           </div>
         )}
       </nav>

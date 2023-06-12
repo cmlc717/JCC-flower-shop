@@ -5,7 +5,7 @@ import { logout } from "../../app/store";
 import Cart from "../cart/Cart";
 
 const Navbar = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const In =isLogged useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
@@ -15,7 +15,6 @@ const Navbar = () => {
 
   // Get cart items count
   const cartItems = JSON.parse(sessionStorage.getItem("cart"));
-
 
   return (
     <div>

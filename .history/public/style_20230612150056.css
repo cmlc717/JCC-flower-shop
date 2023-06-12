@@ -261,19 +261,9 @@ p {
 }
 
 .sign-in-sign-up {
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
+  background-color: #f1f1f1;
 }
 
 .guest-checkout {
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
+  background-color: #e5e5e5;
 }

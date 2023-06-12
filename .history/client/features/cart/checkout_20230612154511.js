@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -17,7 +16,7 @@ const Checkout = () => {
     email: "",
   });
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const [ userLoggedsetUserLoggedIn] = useState(false);
+  const [ setUserLoggedIn] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
 
@@ -84,7 +83,7 @@ const Checkout = () => {
 
   return (
     <div>
-      {isLoggedIn ? (
+      {userLoggedIn ? (
         <div>
           <h2>Checkout</h2>
           <div>
@@ -154,10 +153,7 @@ const Checkout = () => {
               <div className="option sign-in-sign-up">
                 <h3>Log In or Sign Up</h3>
                 <p>Log in or create an account to proceed with the checkout.</p>
-                {/* <button onClick={handleUserLogin}>Log In</button> |{" "}
-                 */}
-                  
-                <Link to="/login">Log In</Link>
+                <button onClick={handleUserLogin}>Log In</button> |{" "}
                 <Link to="/signup">Sign Up</Link>
               </div>
               <div className="option guest-checkout">
@@ -253,6 +249,8 @@ const Checkout = () => {
               <h4>Order number: #{orderNumber}</h4>
               <p>Your package is being processed and will shortly be shipped.</p>
               <p>
+                To check your order history, please click{" "}
+                <Link to="/orderHistory">here</Link>.
               </p>
             </div>
           )}

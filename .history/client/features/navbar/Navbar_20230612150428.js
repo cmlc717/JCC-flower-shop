@@ -13,9 +13,8 @@ const Navbar = () => {
     navigate("/login");
   };
 
-  // Get cart items count
-  const cartItems = JSON.parse(sessionStorage.getItem("cart"));
 
+  const cartItems = JSON.parse(sessionStorage.getItem("cart"));
 
   return (
     <div>
@@ -23,7 +22,7 @@ const Navbar = () => {
         <h1>JCC Flower Shop</h1>
         {isLoggedIn ? (
           <div>
-            {/* The navbar will show these links after you log in */}
+ill show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/orderHistory">Order History</Link>

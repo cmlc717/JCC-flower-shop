@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -16,8 +15,8 @@ const Checkout = () => {
     lastName: "",
     email: "",
   });
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const [ userLoggedsetUserLoggedIn] = useState(false);
+
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
 
@@ -84,7 +83,7 @@ const Checkout = () => {
 
   return (
     <div>
-      {isLoggedIn ? (
+      {userLoggedIn ? (
         <div>
           <h2>Checkout</h2>
           <div>
@@ -147,27 +146,22 @@ const Checkout = () => {
           )}
         </div>
       ) : (
-        !guestCheckout && (
-          <div>
-            <h2>Checkout</h2>
-            <div className="checkout-options">
-              <div className="option sign-in-sign-up">
-                <h3>Log In or Sign Up</h3>
-                <p>Log in or create an account to proceed with the checkout.</p>
-                {/* <button onClick={handleUserLogin}>Log In</button> |{" "}
-                 */}
-                  
-                <Link to="/login">Log In</Link>
-                <Link to="/signup">Sign Up</Link>
-              </div>
-              <div className="option guest-checkout">
-                <h3>Continue as Guest</h3>
-                <p>Proceed with the checkout as a guest.</p>
-                <button onClick={handleGuestCheckout}>Continue as Guest</button>
-              </div>
+        <div>
+          <h2>Checkout</h2>
+          <div className="checkout-options">
+            <div className="option sign-in-sign-up">
+              <h3>Log In or Sign Up</h3>
+              <p>Log in or create an account to proceed with the checkout.</p>
+              <button onClick={handleUserLogin}>Log In</button> |{" "}
+              <Link to="/signup">Sign Up</Link>
+            </div>
+            <div className="option guest-checkout">
+              <h3>Continue as Guest</h3>
+              <p>Proceed with the checkout as a guest.</p>
+              <button onClick={handleGuestCheckout}>Continue as Guest</button>
             </div>
           </div>
-        )
+        </div>
       )}
 
       {guestCheckout && (
@@ -253,6 +247,8 @@ const Checkout = () => {
               <h4>Order number: #{orderNumber}</h4>
               <p>Your package is being processed and will shortly be shipped.</p>
               <p>
+                To check your order history, please click{" "}
+                <Link to="/orderHistory">here</Link>.
               </p>
             </div>
           )}

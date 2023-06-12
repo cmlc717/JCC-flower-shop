@@ -157,7 +157,7 @@ const Checkout = () => {
                 {/* <button onClick={handleUserLogin}>Log In</button> |{" "}
                  */}
                   
-                <Link to="/login">Log In</Link>
+                <Link to="/signup">Sign Up</Link>
                 <Link to="/signup">Sign Up</Link>
               </div>
               <div className="option guest-checkout">
