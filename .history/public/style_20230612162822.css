@@ -269,41 +269,11 @@ p {
   border: 5px solid white;
 }
 
-/* .guest-checkout {
+.guest-checkout {
   font-family: sans-serif;
   background-color: #bde0fe;
   margin: 10vh;
   border-radius: 25px;
   text-align: center;
   border: 5px solid white;
-} */
-
-.checkout-card, .guest-checkout{
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
-  
-}
-
-
-input[type="text"],
-input[type="email"] {
-  width: 50%;
- 
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  /* align-items: ; */
-}
-label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.checkout{
-  align-items: center;
 }

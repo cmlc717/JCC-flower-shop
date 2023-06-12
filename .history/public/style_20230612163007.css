@@ -269,14 +269,14 @@ p {
   border: 5px solid white;
 }
 
-/* .guest-checkout {
+.guest-checkout {
   font-family: sans-serif;
   background-color: #bde0fe;
   margin: 10vh;
   border-radius: 25px;
   text-align: center;
   border: 5px solid white;
-} */
+}
 
 .checkout-card, .guest-checkout{
   font-family: sans-serif;
