@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-
+  
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
     cardNumber: "",
@@ -10,14 +9,15 @@ const Checkout = () => {
     cvv: "",
   });
 
+  
+
   const [guestCheckout, setGuestCheckout] = useState(false);
   const [guestInfo, setGuestInfo] = useState({
     firstName: "",
     lastName: "",
     email: "",
   });
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const [ userLoggedsetUserLoggedIn] = useState(false);
+
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
 
@@ -41,10 +41,6 @@ const Checkout = () => {
     setGuestCheckout(true);
   };
 
-  const handleUserLogin = () => {
-    setUserLoggedIn(true);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -56,6 +52,7 @@ const Checkout = () => {
     } else {
       console.log("Regular checkout:", creditCard);
     }
+
 
     const newOrderNumber = generateOrderNumber();
     setOrderNumber(newOrderNumber);
@@ -84,92 +81,23 @@ const Checkout = () => {
 
   return (
     <div>
-      {isLoggedIn ? (
+      {!guestCheckout && (
         <div>
-          <h2>Checkout</h2>
-          <div>
-            <h3>Welcome, User</h3>
-            <p>Please proceed with your payment information.</p>
-          </div>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Card Number:
-              <input
-                type="text"
-                name="cardNumber"
-                value={creditCard.cardNumber}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Card Holder:
-              <input
-                type="text"
-                name="cardHolder"
-                value={creditCard.cardHolder}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              Expiration Date:
-              <input
-                type="text"
-                name="expirationDate"
-                value={creditCard.expirationDate}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <label>
-              CVV:
-              <input
-                type="text"
-                name="cvv"
-                value={creditCard.cvv}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-            <button type="submit">Submit</button>
-          </form>
-          {orderCompleted && (
-            <div>
-              <h3>We got it!</h3>
-              <h4>Order number: #{orderNumber}</h4>
-              <p>Your package is being processed and will shortly be shipped.</p>
-              <p>
-                To check your order history, please click{" "}
-                <Link to="/orderHistory">here</Link>.
-              </p>
+        <h2>Checkout</h2>
+          <div className="checkout-options">
+            <div className="option sign-in-sign-up">
+              <h3>Log In or Sign Up</h3>
+              <p>Log in or create an account to proceed with the checkout.</p>
+              <Link to="/login">Sign In</Link> | <Link to="/signup">Sign Up</Link>
             </div>
-          )}
+            <div className="option guest-checkout">
+              <h3>Continue as Guest</h3>
+              <p>Proceed with the checkout as a guest.</p>
+              <button onClick={handleGuestCheckout}>Continue as Guest</button>
+            </div>
+          </div>
         </div>
-      ) : (
-        !guestCheckout && (
-          <div>
-            <h2>Checkout</h2>
-            <div className="checkout-options">
-              <div className="option sign-in-sign-up">
-                <h3>Log In or Sign Up</h3>
-                <p>Log in or create an account to proceed with the checkout.</p>
-                {/* <button onClick={handleUserLogin}>Log In</button> |{" "}
-                 */}
-                  
-                <Link to="/login">Log In</Link>
-                <Link to="/signup">Sign Up</Link>
-              </div>
-              <div className="option guest-checkout">
-                <h3>Continue as Guest</h3>
-                <p>Proceed with the checkout as a guest.</p>
-                <button onClick={handleGuestCheckout}>Continue as Guest</button>
-              </div>
-            </div>
-          </div>
-        )
       )}
-
       {guestCheckout && (
         <div>
           <h2>Guest Checkout</h2>
@@ -247,15 +175,17 @@ const Checkout = () => {
             <br />
             <button type="submit">Submit</button>
           </form>
-          {orderCompleted && (
-            <div>
-              <h3>We got it!</h3>
-              <h4>Order number: #{orderNumber}</h4>
-              <p>Your package is being processed and will shortly be shipped.</p>
-              <p>
-              </p>
-            </div>
-          )}
+        </div>
+      )}
+      {orderCompleted && (
+        <div>
+          <h3>We got it!</h3>
+          <h4>Order number: #{orderNumber}</h4>
+          <p>Your package is being processed and will shortly be shipped.</p>
+          <p>
+            To check your order history, please click{" "}
+            <Link to="/orderHistory">here</Link>.
+          </p>
         </div>
       )}
     </div>
