@@ -23,15 +23,15 @@ const AuthForm = ({ name, displayName }) => {
   return (
     <div>
       <form className='LogIn' onSubmit={handleSubmit} name={name}>
-        <div className='User'>
+        <div className='UserPass'>
           <label htmlFor="username">
-            <h4>Username:</h4>
+            <h5>Username:</h5>
           </label>
           <input name="username" type="text" />
         </div>
         <div className='UserPass'>
           <label htmlFor="password">
-            <h4>Password:</h4>
+            <h4>Password:</h5>
           </label>
           <input name="password" type="password" />
         </div>

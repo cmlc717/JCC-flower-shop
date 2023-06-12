@@ -69,9 +69,8 @@ form div {
 
 #cost-box {
   float: right;
-  text-align: right;
-  /* margin:none; */
-  margin-top:4em;
+  text-align: CENTER;
+  margin-top:4eml;
   /* width: 30%; */
 }
 
@@ -341,11 +340,7 @@ label {
   padding: none;
 }
 
-.cart-div{
+.card-div{
   margin: 100px;
 }
 
-.save{
-  display: flex;
-  flex-direction: column;
-}

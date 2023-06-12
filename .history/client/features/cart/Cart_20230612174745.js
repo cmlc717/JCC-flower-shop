@@ -91,14 +91,9 @@ const Cart = () => {
     sessionStorage.removeItem('cart');
   }
 
-  const handleLoad = (purchase) => {
+  const handleLoad = () => {
     updateStorage(savedCart);
     setCartUpdate(true);
-
-    if (purchase) {
-      sessionStorage.setItem('productsArray', JSON.stringify(cart));
-      sessionStorage.setItem('total', JSON.stringify(parseFloat(calculateSubtotal())));
-    }
   }
 
   return (
@@ -154,15 +149,13 @@ const Cart = () => {
             <p id="total-amount">
               Total: ${calculateTotal()}
             </p>
-            <div className="cart-buttons">
-            <button onClick = {() => handleSave()}>Save Cart</button>
-            {userId?
-              <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
-            : <></>}
-            <Link to="/checkout" >
-              <button onClick={() => handleLoad(true)}>Checkout</button>
-            </Link>
-            
+              <div className="cart-buttons">
+              <button onClick = {() => handleSave()}>Save Cart</button>
+              <button onClick = {() => handleLoad()}>Load Saved Cart</button>
+              </div>
+              <Link to="/checkout" >
+                <button>Checkout</button>
+              </Link>
             </div>
           </div>
         </div>

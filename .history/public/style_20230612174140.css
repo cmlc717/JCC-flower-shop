@@ -69,7 +69,7 @@ form div {
 
 #cost-box {
   float: right;
-  text-align: right;
+  text-align: CENTER;
   /* margin:none; */
   margin-top:4em;
   /* width: 30%; */
@@ -345,7 +345,3 @@ label {
   margin: 100px;
 }
 
-.save{
-  display: flex;
-  flex-direction: column;
-}

@@ -345,7 +345,7 @@ label {
   margin: 100px;
 }
 
-.save{
-  display: flex;
-  flex-direction: column;
+cart-buttons > button{
+  margin:none;
+  padding:none;
 }

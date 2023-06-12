@@ -26,7 +26,7 @@ nav {
 }
 
 form div {
-  /* margin: 1em; */
+  margin: 1em;
   display: inline-block;
 }
 
@@ -69,9 +69,6 @@ form div {
 
 #cost-box {
   float: right;
-  text-align: right;
-  /* margin:none; */
-  margin-top:4em;
   /* width: 30%; */
 }
 
@@ -147,7 +144,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"], input[type="password"], input[type="email"]{
+input[type="text"] {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -160,7 +157,6 @@ input[type="text"], input[type="password"], input[type="email"]{
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin:10px;
 }
 
 .submit-button:hover {
@@ -175,7 +171,6 @@ button{
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin:10px;
 }
 
 button:hover {
@@ -183,7 +178,7 @@ button:hover {
 }
 
 img{
-  width: 225px;
+  width: 250px;
   height: auto;
 }
 
@@ -191,13 +186,12 @@ img{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .product-card{
   padding:1em;
   text-align: center;
-  margin: 20px;
+  margin: 50px;
   border-radius: 25px;
   border: 5px solid white;
 }
@@ -216,7 +210,7 @@ img{
 
 .single-img{
   width:500px;
-  height: 50vh;
+  height: auto;
   margin:0;
   padding:0;
   border:0;
@@ -294,16 +288,20 @@ p {
   
 }
 
-/* 
+.guest-checkout > form > {
+  text-align: center;
+}
+
+
 input[type="text"],
-input[type="email"] {
+input[type="email"], input[type="email"]  {
   width: 50%;
  
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  align-items: ;
-} */
+  /* align-items: ; */
+}
 label {
   display: flex;
   align-items: center;
@@ -312,40 +310,4 @@ label {
 
 .checkout{
   align-items: center;
-}
-
-.LogIn {
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
-  
-}
-.User{
-  margin-top:2em;
-}
-.UserPass, .User{
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  /* margin-top:3em; */
-  padding:none
-}
-
-.UPSubmit{
-  margin:none;
-  padding: none;
-}
-
-.cart-div{
-  margin: 100px;
-}
-
-.save{
-  display: flex;
-  flex-direction: column;
 }

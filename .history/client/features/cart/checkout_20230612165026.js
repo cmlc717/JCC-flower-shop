@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { placeOrder, placeGuestOrder } from "./cartSlice";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -18,11 +17,9 @@ const Checkout = () => {
     email: "",
   });
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-  const [ userLogged, setUserLoggedIn] = useState(false);
+  const [ userLoggedsetUserLoggedIn] = useState(false);
   const [orderNumber, setOrderNumber] = useState(null);
   const [orderCompleted, setOrderCompleted] = useState(false);
-  const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.me.id);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,21 +48,18 @@ const Checkout = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const number = generateOrderNumber();
-    setOrderNumber(number);
-    setOrderCompleted(true);
-
-    let productsArray = JSON.parse(sessionStorage.getItem("productsArray"));
-    let total = JSON.parse(sessionStorage.getItem("total"));
-    let tax = total * .1;
-    let d = new Date();
-    let date = d.getDate();
-
-    if (!guestCheckout) {
-      dispatch(placeOrder({userId, productsArray, number, total, tax, date}));
+    if (guestCheckout) {
+      console.log("Guest checkout:", {
+        ...creditCard,
+        ...guestInfo,
+      });
     } else {
-      dispatch(placeGuestOrder({userId, productsArray, number, total, tax, date}));
+      console.log("Regular checkout:", creditCard);
     }
+
+    const newOrderNumber = generateOrderNumber();
+    setOrderNumber(newOrderNumber);
+    setOrderCompleted(true);
 
     setCreditCard({
       cardNumber: "",
@@ -73,7 +67,6 @@ const Checkout = () => {
       expirationDate: "",
       cvv: "",
     });
-
     setGuestInfo({
       firstName: "",
       lastName: "",
@@ -86,7 +79,7 @@ const Checkout = () => {
   const generateOrderNumber = () => {
     // Generate a random order number
     const randomNumber = Math.floor(Math.random() * 1000000);
-    return randomNumber;
+    return `ORDER-${randomNumber}`;
   };
 
   return (
@@ -165,8 +158,6 @@ const Checkout = () => {
                  */}   
                   <button>
                     <Link to="/login">Log In</Link>
-                    </button>
-                    <button>
                     <Link to="/signup">Sign Up</Link>
                   </button>
               </div>

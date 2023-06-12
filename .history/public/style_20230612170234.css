@@ -26,7 +26,7 @@ nav {
 }
 
 form div {
-  /* margin: 1em; */
+  margin: 1em;
   display: inline-block;
 }
 
@@ -69,9 +69,7 @@ form div {
 
 #cost-box {
   float: right;
-  text-align: right;
-  /* margin:none; */
-  margin-top:4em;
+  text-align: CENTER;
   /* width: 30%; */
 }
 
@@ -183,7 +181,7 @@ button:hover {
 }
 
 img{
-  width: 225px;
+  width: 250px;
   height: auto;
 }
 
@@ -191,13 +189,12 @@ img{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .product-card{
   padding:1em;
   text-align: center;
-  margin: 20px;
+  margin: 50px;
   border-radius: 25px;
   border: 5px solid white;
 }
@@ -216,7 +213,7 @@ img{
 
 .single-img{
   width:500px;
-  height: 50vh;
+  height: auto;
   margin:0;
   padding:0;
   border:0;
@@ -294,58 +291,42 @@ p {
   
 }
 
-/* 
-input[type="text"],
-input[type="email"] {
-  width: 50%;
- 
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  align-items: ;
-} */
-label {
+form label {
   display: flex;
   align-items: center;
+  width: 200px;
   margin-bottom: 10px;
 }
 
-.checkout{
+
+form button[type="submit"] {
+  margin-top: 10px;
+}
+
+/* Align the checkout options */
+.checkout-options {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.LogIn {
-  display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
-  
-}
-.User{
-  margin-top:2em;
-}
-.UserPass, .User{
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  /* margin-top:3em; */
-  padding:none
+.checkout-options .option {
+  width: 48%;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-.UPSubmit{
-  margin:none;
-  padding: none;
+/* Align the guest checkout form */
+.guest-checkout form label {
+  display: inline-block;
+  width: 30%;
+  margin-right: 10px;
+  text-align: right;
 }
 
-.cart-div{
-  margin: 100px;
-}
 
-.save{
-  display: flex;
-  flex-direction: column;
+.guest-checkout form button[type="submit"] {
+  margin-top: 10px;
 }
