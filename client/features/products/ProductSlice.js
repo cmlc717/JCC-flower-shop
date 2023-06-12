@@ -1,7 +1,6 @@
 export const addToStorage = (product) => {
   let currentCart = JSON.parse(sessionStorage.getItem('cart'));
   if (currentCart) {
-    console.log("in current cart")
     currentCart.push(product);
     sessionStorage.setItem("cart", JSON.stringify(currentCart));
   } else {
@@ -13,8 +12,22 @@ export const addToStorage = (product) => {
 export const removeFromStorage = (productId) => {
   let currentCart = JSON.parse(sessionStorage.getItem('cart'));
   if (currentCart) {
-    console.log("remove from cart");
     const updatedCart = currentCart.filter(item => item.id !== productId);
     sessionStorage.setItem("cart", JSON.stringify(updatedCart));
   }
 };
+
+export const updateStorage = (savedCart) => {
+  let currentCart = JSON.parse(sessionStorage.getItem('cart'));
+  if (!currentCart) {
+    currentCart = [];
+  }
+  for (let i = 0; i < savedCart.length; i++) {
+    let qty = savedCart[i].productQty;
+    while (qty > 0) {
+      currentCart.push(savedCart[i].product)
+      qty--;
+    }
+  }
+  sessionStorage.setItem("cart", JSON.stringify(currentCart));
+}

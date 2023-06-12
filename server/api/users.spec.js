@@ -27,7 +27,7 @@ describe('User routes', () => {
     it('POST  /api/users/saveMyCart/2', async() => {
       const res = await request(app)
         .post('/api/users/saveMyCart/2')
-        .send([[1, 1], [2, 2], [3,3]]) // the HTTP request body [id, qty]
+        .send({cart: [[1, 1], [2, 2], [3,3]]}) // the HTTP request body [id, qty]
       expect(res.body).to.be.an('array');
       expect(res.body.length).to.equal(3);
     })
@@ -35,7 +35,7 @@ describe('User routes', () => {
     it('GET  /api/users/getMyCart/2', async() => {
       const res = await request(app)
         .post('/api/users/saveMyCart/2')
-        .send([[1, 1], [2, 2], [3,3]]) // the HTTP request body [id, qty]
+        .send({cart: [[1, 1], [2, 2], [3,3]]}) // the HTTP request body [id, qty]
 
       const res2 = await request(app)
         .get('/api/users/getMyCart/2')

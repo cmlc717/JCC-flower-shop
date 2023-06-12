@@ -2,26 +2,28 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { removeFromStorage } from "../products/ProductSlice";
 import { v4 as uuidv4 } from 'uuid';
-import { saveOrder } from "./cartSlice";
+import { saveOrder, getCart } from "./cartSlice";
 import { useSelector, useDispatch } from 'react-redux';
+import { updateStorage } from "../products/ProductSlice";
 
 const Cart = () => {
-  const cartItems = JSON.parse(sessionStorage.getItem("cart"));
   const [quantities, setQuantities] = useState([]);
   const [cart, setCart] = useState([]); //this will be sent to the backend since the id is easier to track
-  const [changed, setChanged] = useState(false);
   const savedCart = useSelector((state) => state.savedCart);
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.me.id);
-
+  const [cartUpdate, setCartUpdate] = useState(false);
+  
   // Set default quantities
   useEffect(() => {
+    dispatch(getCart(userId))
     setDefault();
-    setChanged(false);
-  }, [])
+    setCartUpdate(false);
+  }, [cartUpdate])
 
   const setDefault = () => {
-    if (cartItems.length > 0) {
+    const cartItems = JSON.parse(sessionStorage.getItem("cart"));
+    if (cartItems && cartItems.length > 0) {
       const cartArr = [[cartItems[0].id, 1]];
       const quantitiesArr = [[cartItems[0], 1]];
       for (let i = 1; i < cartItems.length; i++) {
@@ -42,7 +44,6 @@ const Cart = () => {
       setCart(cartArr);
       setQuantities(quantitiesArr);
     }
-
   }
 
   // Function to update quantity for a product
@@ -58,12 +59,10 @@ const Cart = () => {
     }
     setCart(cartArrCopy);
     setQuantities(quantitiesArrCopy);
-    setChanged(true);
   };
 
   const handleRemoveItem = (productId) => {
     removeFromStorage(productId);
-    setChanged(true);
   };
 
   // Calculate subtotal
@@ -89,12 +88,18 @@ const Cart = () => {
   // Save cart to database for persisting cart
   const handleSave = () => {
     dispatch(saveOrder({userId, cart}));
+    sessionStorage.removeItem('cart');
+  }
+
+  const handleLoad = () => {
+    updateStorage(savedCart);
+    setCartUpdate(true);
   }
 
   return (
     <div>
       <h2 className = "title" id="header-cart">🌹 Cart 🌹</h2>
-      {!cartItems || cartItems.length === 0? (
+      {!quantities && savedCart.length===0? (
         <p>No items in the cart</p>
       ) : (
         <div className="cart">
@@ -145,6 +150,7 @@ const Cart = () => {
               Total: ${calculateTotal()}
             </p>
             <button onClick = {() => handleSave()}>Save Cart</button>
+            <button onClick = {() => handleLoad()}>Load Saved Cart</button>
             <Link to="/checkout" >
               <button>Checkout</button>
             </Link>
