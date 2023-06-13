@@ -4,10 +4,7 @@ import { fetchOrderHistoryAsync } from "./OrderHistorySlice";
 import SingleOrder from "./SingleOrder";
 import { v4 as uuidv4 } from 'uuid';
 
-/**
- * COMPONENT
- */
-const OrderHistory = (props) => {
+const OrderHistory = () => {
   const username = useSelector((state) => state.auth.me.username);
   const id = useSelector((state) => state.auth.me.id);
   const orderHistory = useSelector((state) => state.orderHistory);

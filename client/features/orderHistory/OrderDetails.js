@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOrderDetails } from "./OrderDetailsSlice";
-import { v4 as uuidv4 } from 'uuid';
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-/**
- * COMPONENT
- */
 const OrderDetails = () => {
   let orderId = useParams().orderId;
   const orderDetails = useSelector((state) => state.orderDetails);
