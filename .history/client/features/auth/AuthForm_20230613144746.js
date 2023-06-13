@@ -34,7 +34,7 @@ const AuthForm = (props) => {
       dispatch(authenticate({ method: formName, username, password }));
     }
   };
-
+}
   const validateForm = (username, password, email, address, cardNumber) => {
     let valid = true;
     if (email && (!email.includes("@") || !email.includes(".") || typeof email != "string" || email.length === 0 || email === undefined)) {
@@ -62,21 +62,23 @@ const AuthForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
+      <form className='LogIn' onSubmit={handleSubmit} name={name}>
+        <div className='User'>
           <label htmlFor="username">
-            <small>Username</small>
+            <h4>Username:</h4>
           </label>
           <input name="username" type="text" required/>
         </div>
-        <div>
+        <div className='UserPass'>
           <label htmlFor="password">
-            <small>Password</small>
+            <h4>Password:</h4>
           </label>
           <input name="password" type="password" required/>
         </div>
+        <div className='UPSubmit'>
+=======
         {displayName==="Sign Up"? 
-          <div>
+          <div>git be
             <div>
               <label htmlFor="email">
                 <small>Email</small>
