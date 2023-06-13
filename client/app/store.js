@@ -5,6 +5,7 @@ import orderHistoryReducer from '../features/orderHistory/OrderHistorySlice';
 import orderDetailsReducer from '../features/orderHistory/OrderDetailsSlice';
 import checkoutSliceReducer from '../features/cart/checkoutSlice';
 import savedCartReducer from '../features/cart/cartSlice';
+import userDetailsReducer from '../features/user/userSlice';
 
 const middleware = [...getDefaultMiddleware(), logger];
 
@@ -14,7 +15,8 @@ const store = configureStore({
     orderHistory: orderHistoryReducer,
     orderDetails: orderDetailsReducer,
     checkout: checkoutSliceReducer,
-    savedCart: savedCartReducer
+    savedCart: savedCartReducer,
+    userDetails: userDetailsReducer
   },
   middleware: middleware,
 });

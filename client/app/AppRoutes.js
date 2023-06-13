@@ -10,6 +10,9 @@ import Cart from "../features/cart/Cart";
 import SingleProduct from "../features/products/SingleProducts";
 import Checkout from "../features/cart/checkout";
 import OrderDetails from '../features/orderHistory/OrderDetails';
+import User from "../features/user/user";
+import EditUser from "../features/user/editUser";
+
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -28,6 +31,8 @@ const AppRoutes = () => {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orderHistory" element={<OrderHistory />} />
             <Route path="/orderHistory/:orderId" element={<OrderDetails />}/>
+            <Route path="/userProfile" element={<User />}/>
+            <Route path="/userProfile/edit" element={<EditUser />} />
           </>
         ) : (
           <>
