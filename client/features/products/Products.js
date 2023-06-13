@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToStorage, removeFromStorage } from "./ProductSlice";
+import { addToStorage } from "./ProductSlice";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // Fetch products from the server
     fetch('/api/products')
       .then((response) => response.json())
       .then((data) => setProducts(data))

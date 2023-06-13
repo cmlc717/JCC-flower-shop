@@ -14,7 +14,6 @@ const Cart = () => {
   const userId = useSelector((state) => state.auth.me.id);
   const [cartUpdate, setCartUpdate] = useState(false);
   
-  // Set default quantities
   useEffect(() => {
     dispatch(getCart(userId))
     setDefault();
@@ -46,7 +45,6 @@ const Cart = () => {
     }
   }
 
-  // Function to update quantity for a product
   const handleQuantityChange = (productId, quantity) => {
     let quantitiesArrCopy = [...quantities];
     let cartArrCopy = [...cart];
@@ -65,7 +63,6 @@ const Cart = () => {
     removeFromStorage(productId);
   };
 
-  // Calculate subtotal
   const calculateSubtotal = () => {
     let subtotal = 0;
     for (let i = 0; i < quantities.length; i++) {
@@ -76,7 +73,6 @@ const Cart = () => {
     return subtotal.toFixed(2);
   };
 
-  // Calculate total
   const calculateTotal = () => {
     const subtotal = parseFloat(calculateSubtotal());
     const tax = subtotal * 0.1;

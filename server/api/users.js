@@ -61,7 +61,7 @@ router.post('/saveMyCart/:userId', async (req, res, next) => {
       }
     }
 
-    res.json(currentCart)
+    res.json(currentCart);
   } catch (ex) {
     next(ex);
   }

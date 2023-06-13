@@ -44,10 +44,6 @@ const Checkout = () => {
     setGuestCheckout(true);
   };
 
-  const handleUserLogin = () => {
-    setUserLoggedIn(true);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -89,12 +85,10 @@ const Checkout = () => {
       lastName: "",
       email: "",
     });
-    // Clear the cart
     sessionStorage.removeItem("cart");
   };
 
   const generateOrderNumber = () => {
-    // Generate a random order number
     const randomNumber = Math.floor(Math.random() * 1000000);
     return randomNumber;
   };
@@ -102,7 +96,7 @@ const Checkout = () => {
   const validateCheckout = () => {
     let valid = true;
 
-    if (typeof creditCard.cardNumber != "number") {
+    if (typeof Number(creditCard.cardNumber) != "number") {
       valid = false;
     }
 
@@ -212,8 +206,6 @@ const Checkout = () => {
               <div className="option sign-in-sign-up">
                 <h3>Log In or Sign Up</h3>
                 <p>Log in or create an account to proceed with the checkout.</p>
-                {/* <button onClick={handleUserLogin}>Log In</button> |{" "}
-                 */}   
                   <button>
                     <Link to="/login">Log In</Link>
                     </button>
