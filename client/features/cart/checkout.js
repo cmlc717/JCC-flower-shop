@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { placeOrder } from "./cartSlice";
+import { placeOrder, placeGuestOrder } from "./cartSlice";
 
 const Checkout = () => {
   const [creditCard, setCreditCard] = useState({
@@ -55,13 +55,16 @@ const Checkout = () => {
     setOrderNumber(number);
     setOrderCompleted(true);
 
+    let productsArray = JSON.parse(sessionStorage.getItem("productsArray"));
+    let total = JSON.parse(sessionStorage.getItem("total"));
+    let tax = total * .1;
+    let d = new Date();
+    let date = d.getDate();
+
     if (!guestCheckout) {
-      let productsArray = JSON.parse(sessionStorage.getItem("productsArray"));
-      let total = JSON.parse(sessionStorage.getItem("total"));
-      let tax = total * .1;
-      let d = new Date();
-      let date = d.getDate();
       dispatch(placeOrder({userId, productsArray, number, total, tax, date}));
+    } else {
+      dispatch(placeGuestOrder({userId, productsArray, number, total, tax, date}));
     }
 
     setCreditCard({

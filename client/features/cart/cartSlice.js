@@ -26,6 +26,18 @@ export const placeOrder = createAsyncThunk('placeOrder', async ({userId, product
   }
 });
 
+export const placeGuestOrder = createAsyncThunk('placeGuestOrder', async ({ productsArray, number, total, tax, date}) => {
+  try {
+     const res = await axios.post(`/api/orders/orderMyCart/guest`, {productsArray, number, total, tax, date});
+  } catch (err) {
+    if (err.response.data) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    } else {
+      return 'There was an issue with your request.';
+    }
+  }
+});
+
 export const saveOrder = createAsyncThunk('saveOrder', async ({userId, cart}) => {
   const token = window.localStorage.getItem(TOKEN);
 
