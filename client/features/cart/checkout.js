@@ -64,7 +64,7 @@ const Checkout = () => {
     if (!guestCheckout) {
       dispatch(placeOrder({userId, productsArray, number, total, tax, date}));
     } else {
-      dispatch(placeGuestOrder({userId, productsArray, number, total, tax, date}));
+      dispatch(placeGuestOrder({productsArray, number, total, tax, date}));
     }
 
     setCreditCard({

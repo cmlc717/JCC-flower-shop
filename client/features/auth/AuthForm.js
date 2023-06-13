@@ -8,7 +8,9 @@ import { authenticate } from '../../app/store';
   Props for Sign up: name="signup", displayName="Sign Up"
 **/
 
-const AuthForm = ({ name, displayName }) => {
+const AuthForm = (props) => {
+  const { name } = props;
+  const { displayName } = props;
   const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -17,7 +19,14 @@ const AuthForm = ({ name, displayName }) => {
     const formName = evt.target.name;
     const username = evt.target.username.value;
     const password = evt.target.password.value;
-    dispatch(authenticate({ username, password, method: formName }));
+    if (displayName === "Sign Up") {
+      const email = evt.target.email.value;
+      const address = evt.target.address.value;
+      const cardNumber = evt.target.cardNumber.value;
+      dispatch(authenticate({ method: formName, username, password, email, address, cardNumber }));
+    } else {
+      dispatch(authenticate({ method: formName, username, password }));
+    }
   };
 
   return (
@@ -35,6 +44,28 @@ const AuthForm = ({ name, displayName }) => {
           </label>
           <input name="password" type="password" />
         </div>
+        {displayName==="Sign Up"? 
+          <div>
+            <div>
+              <label htmlFor="email">
+                <small>Email</small>
+              </label>
+              <input name="email" type="text" />
+            </div>
+            <div>
+                <label htmlFor="address">
+                  <small>Address</small>
+                </label>
+                <input name="address" type="text" />
+            </div>
+            <div>
+              <label htmlFor="cardNumber">
+                <small>Card Number</small>
+              </label>
+              <input name="cardNumber" type="text" />
+            </div>
+          </div>
+        : <></> }
         <div>
           <button type="submit">{displayName}</button>
         </div>
