@@ -33,6 +33,38 @@ router.get('/orderDetails/:orderId', async(req, res, next) => {
   }
 });
 
+router.post('/orderMyCart/guest', async (req, res, next) => {
+  try {
+    let products = req.body.productsArray;
+    const productObjects = await Promise.all(products.map(async(array) => {
+      let productObj = await Product.findOne({where: {id: array[0]}});
+      return productObj;
+    }));
+
+    const newOrder = await Order.create({number: req.body.number,total: req.body.total, tax: req.body.tax, date: req.body.date})
+    for (let i = 0; i < productObjects.length; i++) {
+      await productObjects[i].addOrder(newOrder);
+      await productObjects[i].update({order: newOrder});
+      await productObjects[i].save();
+    }
+
+    const currentOrderProducts = await OrdersProducts.findAll({where: {orderId: newOrder.id}});
+
+    for (let i = 0; i < currentOrderProducts.length; i++) {
+      for (let j = 0; j < products.length; j++) {
+        if (currentOrderProducts[i].dataValues.productId === products[j][0]) {
+          await currentOrderProducts[i].update({productQty: products[j][1]});
+          await currentOrderProducts[i].save();
+        }
+      }
+    }
+
+    res.json(currentOrderProducts);
+  } catch (ex) {
+    next(ex);
+  }
+});
+
 router.post('/orderMyCart/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({where: {id: req.params.userId}, include: {model: Product}});
@@ -67,7 +99,7 @@ router.post('/orderMyCart/:userId', async (req, res, next) => {
   } catch (ex) {
     next(ex);
   }
-})
+});
 
 async function clearCart(userId) {
   let userProducts = await UserProducts.findAll({where: {userId: userId}});

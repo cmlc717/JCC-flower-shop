@@ -155,7 +155,9 @@ const Cart = () => {
               Total: ${calculateTotal()}
             </p>
             <button onClick = {() => handleSave()}>Save Cart</button>
-            <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
+            {userId?
+              <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
+            : <></>}
             <Link to="/checkout" >
               <button onClick={() => handleLoad(true)}>Checkout</button>
             </Link>
