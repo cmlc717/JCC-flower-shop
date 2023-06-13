@@ -48,40 +48,42 @@ const EditUser = () => {
     }
   
     return (
-      <div>
+      <div className="LogIn">
         <form onSubmit={handleSubmit} name={name}>
-            <div>
-                <label htmlFor="username">
-                    <small>Username</small>
-                </label>
-                <input name="username" type="text" defaultValue={userDetails.username} required/>
-            </div>
-            <div>
-                <label htmlFor="password">
-                    <small>Password</small>
-                </label>
-                <input name="password" type="password" defaultValue={userDetails.password} required/>
-            </div>
-            <div>
-                <label htmlFor="email">
-                  <small>Email</small>
-                </label>
-                <input name="email" type="email" defaultValue={userDetails.email} />
-            </div>
-            <div>
-                <label htmlFor="address">
-                    <small>Address</small>
-                </label>
-                <input name="address" type="text" defaultValue={userDetails.address}/>
-            </div>
-            <div>
-                <label htmlFor="cardNumber">
-                  <small>Card Number</small>
-                </label>
-                <input name="cardNumber" type="text" defaultValue={userDetails.cardNumber}/>
-            </div>
-            <div>
-                <button type="submit">Confirm</button>
+            <div className="signup">
+                <div>
+                    <label htmlFor="username">
+                        <small>Username</small>
+                    </label>
+                    <input name="username" type="text" defaultValue={userDetails.username} required/>
+                </div>
+                <div>
+                    <label htmlFor="password">
+                        <small>Password</small>
+                    </label>
+                    <input name="password" type="password" defaultValue={userDetails.password} required/>
+                </div>
+                <div>
+                    <label htmlFor="email">
+                    <small>Email</small>
+                    </label>
+                    <input name="email" type="email" defaultValue={userDetails.email} />
+                </div>
+                <div>
+                    <label htmlFor="address">
+                        <small>Address</small>
+                    </label>
+                    <input name="address" type="text" defaultValue={userDetails.address}/>
+                </div>
+                <div>
+                    <label htmlFor="cardNumber">
+                    <small>Card Number</small>
+                    </label>
+                    <input name="cardNumber" type="text" defaultValue={userDetails.cardNumber}/>
+                </div>
+                <div>
+                    <button type="submit">Confirm</button>
+                </div>
             </div>
         </form>
       </div>

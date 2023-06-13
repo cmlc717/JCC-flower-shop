@@ -13,6 +13,7 @@ const Home = () => {
         {username ? `🌼 Hello, ${capitalizedUsername}! 🌼` : "🌼 Welcome! 🌼"}
       </h2>
       <Products />
+      <footer><a href="https://icons8.com/icon/Y6v4nAuvNhj6/spring">Flower</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></footer>
     </div>
   );
 };
