@@ -261,7 +261,7 @@ p {
   padding: 20px;
 }
 
-.checkout-card, .guest-checkout, .option-sign-in-sign-up {
+.checkout-card, .guest-checkout, #option-sign-in-sign-up {
   font-family: sans-serif;
   background-color: #bde0fe;
   margin: 10vh;
