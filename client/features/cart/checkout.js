@@ -62,9 +62,19 @@ const Checkout = () => {
     let date = d.getDate();
 
     if (!guestCheckout) {
-      dispatch(placeOrder({userId, productsArray, number, total, tax, date}));
+      let valid = validateCheckout();
+      if (valid) {
+        dispatch(placeOrder({userId, productsArray, number, total, tax, date}));
+      } else {
+        alert("Please fill out form with appropriate data");
+      }
     } else {
-      dispatch(placeGuestOrder({userId, productsArray, number, total, tax, date}));
+      let valid = validateCheckout() && validateGuest();
+      if (valid) {
+        dispatch(placeGuestOrder({productsArray, number, total, tax, date}));
+      } else {
+        alert("Please fill out form with appropriate data");
+      }
     }
 
     setCreditCard({
@@ -89,6 +99,42 @@ const Checkout = () => {
     return randomNumber;
   };
 
+  const validateCheckout = () => {
+    let valid = true;
+
+    if (typeof creditCard.cardNumber != "number") {
+      valid = false;
+    }
+
+    if (typeof creditCard.cardHolder != "string") {
+      valid = false;
+    }
+
+    if (!creditCard.expirationDate.includes("/")) {
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  const validateGuest = () => {
+    let valid = true;
+
+    if (typeof guestInfo.firstName != "string") {
+      valid = false;
+    }
+
+    if (typeof guestInfo.lastName != "string") {
+      valid = false;
+    }
+
+    if (!guestInfo.email.includes("@") || !guestInfo.email.includes(".") || typeof guestInfo.email != "string" ) {
+      valid = false;
+    }
+
+    return valid;
+  }
+
   return (
     <div>
       {isLoggedIn ? (
@@ -106,6 +152,7 @@ const Checkout = () => {
                 name="cardNumber"
                 value={creditCard.cardNumber}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -116,6 +163,7 @@ const Checkout = () => {
                 name="cardHolder"
                 value={creditCard.cardHolder}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -126,6 +174,7 @@ const Checkout = () => {
                 name="expirationDate"
                 value={creditCard.expirationDate}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -136,6 +185,8 @@ const Checkout = () => {
                 name="cvv"
                 value={creditCard.cvv}
                 onChange={handleChange}
+                maxLength={4}
+                required
               />
             </label>
             <br />
@@ -191,6 +242,7 @@ const Checkout = () => {
                 name="firstName"
                 value={guestInfo.firstName}
                 onChange={handleGuestInfoChange}
+                required
               />
             </label>
             <br />
@@ -201,6 +253,7 @@ const Checkout = () => {
                 name="lastName"
                 value={guestInfo.lastName}
                 onChange={handleGuestInfoChange}
+                required
               />
             </label>
             <br />
@@ -211,6 +264,7 @@ const Checkout = () => {
                 name="email"
                 value={guestInfo.email}
                 onChange={handleGuestInfoChange}
+                required
               />
             </label>
             <br />
@@ -222,6 +276,7 @@ const Checkout = () => {
                 name="cardNumber"
                 value={creditCard.cardNumber}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -232,6 +287,7 @@ const Checkout = () => {
                 name="cardHolder"
                 value={creditCard.cardHolder}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -242,6 +298,7 @@ const Checkout = () => {
                 name="expirationDate"
                 value={creditCard.expirationDate}
                 onChange={handleChange}
+                required
               />
             </label>
             <br />
@@ -252,6 +309,8 @@ const Checkout = () => {
                 name="cvv"
                 value={creditCard.cvv}
                 onChange={handleChange}
+                maxLength={4}
+                required
               />
             </label>
             <br />
