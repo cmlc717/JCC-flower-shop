@@ -60,11 +60,8 @@ const Cart = () => {
   };
 
   const handleRemoveItem = (productId) => {
-    const updatedQuantities = quantities.filter((itemArr) => itemArr[0].id !== productId);
-    const updatedCart = cart.filter((itemArr) => itemArr[0] !== productId);
-  
-    setQuantities(updatedQuantities);
-    setCart(updatedCart);
+    removeFromStorage(productId);
+    location.reload();
   };
 
   const calculateSubtotal = () => {

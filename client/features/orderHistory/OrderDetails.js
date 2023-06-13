@@ -9,7 +9,6 @@ const OrderDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(orderId);
     dispatch(fetchOrderDetails(orderId));
   }, [dispatch]);
 
