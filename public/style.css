@@ -268,7 +268,18 @@ p {
   border-radius: 25px;
   text-align: center;
   border: 5px solid white;
-  
+}
+
+.guest-checkout label {
+  width: 200px;
+}
+
+.guest-checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 label {
