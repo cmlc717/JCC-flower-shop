@@ -118,9 +118,10 @@ const Cart = () => {
 
               return (
                 <li key={uuidv4()} className="cart-item">
-                  <div className="cart-item-name">{item.name}</div>
+                  <div className="cart-label">{item.name}</div>
                   <div>
                     <select
+                      className="cart-label"
                       defaultValue={quantity}
                       onChange={(e) =>
                         handleQuantityChange(item.id, parseInt(e.target.value))
@@ -133,11 +134,11 @@ const Cart = () => {
                       ))}
                     </select>
                   </div>
-                  <div className="cart-item-price">
+                  <div className="cart-label">
                     ${totalPrice.toFixed(2)}
                   </div>
                   <div>
-                    <button onClick={() => handleRemoveItem(item.id)}>X</button>
+                    <button className="cart-label" onClick={() => handleRemoveItem(item.id)}>X</button>
                   </div>
                 </li>
               );
@@ -151,14 +152,13 @@ const Cart = () => {
               Total: ${calculateTotal()}
             </p>
             <div className="cart-buttons">
-            <button onClick = {() => handleSave()}>Save Cart</button>
-            {userId?
-              <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
-            : <></>}
-            <Link to="/checkout" >
-              <button onClick={() => handleLoad(true)}>Checkout</button>
-            </Link>
-            
+              {userId?
+                <div className="userButtons">
+                  <button onClick = {() => handleSave()}>Save Cart</button>
+                  <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
+                </div>
+              : <></>}
+                <button onClick={() => handleLoad(true)}><Link to="/checkout" >Checkout</Link></button>
             </div>
           </div>
         </div>

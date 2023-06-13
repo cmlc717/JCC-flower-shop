@@ -40,13 +40,15 @@ form div {
   justify-content: space-between;
   margin-bottom: 10px;
   align-items: center;
+  border-bottom: 2px solid #780000;
+  color:#780000;
 }
 
 .cart-item-header {
-  flex-basis: 33.33%;
+  display: flex;
+  justify-content: space-between;
   font-size: 16px;
   font-weight: bold;
-  border-bottom: 2px solid black;
 }
 
 .cart-item {
@@ -58,21 +60,14 @@ form div {
   padding-bottom: 5px;
 }
 
-.cart-item-name {
-  flex-basis: 33.33%;
-}
-
-.cart-item-price {
-  flex-basis: 33.33%;
-  text-align: right;
+.cart-label {
+  width: 50px;
 }
 
 #cost-box {
   float: right;
-  text-align: right;
-  /* margin:none; */
+  text-align: center;
   margin-top:4em;
-  /* width: 30%; */
 }
 
 #total-amount {
@@ -151,6 +146,7 @@ input[type="text"], input[type="password"], input[type="email"]{
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-left: 10px;
 }
 
 .submit-button {
@@ -250,7 +246,6 @@ p {
 .title {
   color: #c898e4;
   text-shadow: 1px 1px 2px white;
-
 }
 
 #homeContainer {
@@ -266,24 +261,6 @@ p {
   padding: 20px;
 }
 
-.sign-in-sign-up {
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
-}
-
-/* .guest-checkout {
-  font-family: sans-serif;
-  background-color: #bde0fe;
-  margin: 10vh;
-  border-radius: 25px;
-  text-align: center;
-  border: 5px solid white;
-} */
-
 .checkout-card, .guest-checkout{
   font-family: sans-serif;
   background-color: #bde0fe;
@@ -294,20 +271,10 @@ p {
   
 }
 
-/* 
-input[type="text"],
-input[type="email"] {
-  width: 50%;
- 
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  align-items: ;
-} */
 label {
   display: flex;
-  align-items: center;
   margin-bottom: 10px;
+  width: 100px;
 }
 
 .checkout{
@@ -323,17 +290,19 @@ label {
   border-radius: 25px;
   text-align: center;
   border: 5px solid white;
-  
+  align-items: center;
 }
-.User{
-  margin-top:2em;
+
+.User {
+  margin-top: 2em;
 }
+
 .UserPass, .User{
   display: flex;
   align-items: baseline;
   justify-content: center;
-  /* margin-top:3em; */
-  padding:none
+  padding:none;
+  width: 400px;
 }
 
 .UPSubmit{
@@ -341,11 +310,40 @@ label {
   padding: none;
 }
 
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding:none;
+}
+
 .cart-div{
   margin: 100px;
 }
 
-.save{
+.userButtons {
   display: flex;
   flex-direction: column;
+}
+
+.cart-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+footer {
+  float: bottom;
+  margin-top: 100px;
+  text-align: center;
+}
+
+#userProfile {
+  padding:1em;
+  text-align: center;
+  margin: 100px;
+  border-radius: 25px;
+  border: 5px solid white;
+  background-color: #cdb4db;
 }
