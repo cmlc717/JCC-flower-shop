@@ -27,6 +27,7 @@ const Navbar = () => {
             <Link to="/home">Home</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/orderHistory">Order History</Link>
+            <Link to="/userProfile">Profile</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
