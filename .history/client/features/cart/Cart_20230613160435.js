@@ -60,13 +60,13 @@ const Cart = () => {
   };
 
   const handleRemoveItem = (productId) => {
-    const updatedQuantities = quantities.filter((itemArr) => itemArr[0].id !== productId);
-    const updatedCart = cart.filter((itemArr) => itemArr[0] !== productId);
-  
-    setQuantities(updatedQuantities);
-    setCart(updatedCart);
+    removeFromStorage(productId);
   };
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5410fc7edb46e7c98ada3109a9594298f07045bd
   const calculateSubtotal = () => {
     let subtotal = 0;
     for (let i = 0; i < quantities.length; i++) {
@@ -77,6 +77,10 @@ const Cart = () => {
     return subtotal.toFixed(2);
   };
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 5410fc7edb46e7c98ada3109a9594298f07045bd
   const calculateTotal = () => {
     const subtotal = parseFloat(calculateSubtotal());
     const tax = subtotal * 0.1;
@@ -85,7 +89,7 @@ const Cart = () => {
     return total.toFixed(2);
   };
 
-  // Save cart to database for persisting cart
+
   const handleSave = () => {
     dispatch(saveOrder({userId, cart}));
     sessionStorage.removeItem('cart');
@@ -122,10 +126,9 @@ const Cart = () => {
 
               return (
                 <li key={uuidv4()} className="cart-item">
-                  <div className="cart-label">{item.name}</div>
+                  <div className="cart-item-name">{item.name}</div>
                   <div>
                     <select
-                      className="cart-label"
                       defaultValue={quantity}
                       onChange={(e) =>
                         handleQuantityChange(item.id, parseInt(e.target.value))
@@ -138,11 +141,11 @@ const Cart = () => {
                       ))}
                     </select>
                   </div>
-                  <div className="cart-label">
+                  <div className="cart-item-price">
                     ${totalPrice.toFixed(2)}
                   </div>
                   <div>
-                    <button className="cart-label" onClick={() => handleRemoveItem(item.id)}>X</button>
+                    <button onClick={() => handleRemoveItem(item.id)}>X</button>
                   </div>
                 </li>
               );
@@ -156,13 +159,14 @@ const Cart = () => {
               Total: ${calculateTotal()}
             </p>
             <div className="cart-buttons">
-              {userId?
-                <div className="userButtons">
-                  <button onClick = {() => handleSave()}>Save Cart</button>
-                  <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
-                </div>
-              : <></>}
-                <button onClick={() => handleLoad(true)}><Link to="/checkout" >Checkout</Link></button>
+            <button onClick = {() => handleSave()}>Save Cart</button>
+            {userId?
+              <button onClick = {() => handleLoad(false)}>Load Saved Cart</button>
+            : <></>}
+            <Link to="/checkout" >
+              <button onClick={() => handleLoad(true)}>Checkout</button>
+            </Link>
+            
             </div>
           </div>
         </div>
