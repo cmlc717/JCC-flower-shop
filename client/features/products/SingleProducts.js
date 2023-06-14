@@ -35,7 +35,7 @@ const SingleProduct = () => {
   };
 
   return (
-    <div>
+    <div className="product-card">
       <div className='singleProduct-box'>
         <h2 className='product-name'>{product.name}</h2>
           <img src={product.imageUrl} className='single-img'/>

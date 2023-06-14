@@ -132,8 +132,8 @@ const Checkout = () => {
   return (
     <div>
       {isLoggedIn ? (
-        <div>
-          <h2>Checkout</h2>
+        <div className='guest-checkout'>
+          <h2 className="title">Checkout</h2>
           <div>
             <h3>Welcome, User</h3>
             <p>Please proceed with your payment information.</p>
@@ -201,7 +201,7 @@ const Checkout = () => {
       ) : (
         !guestCheckout && (
           <div>
-            <h2>Checkout</h2>
+            <h2 className="title">Checkout</h2>
             <div className="checkout-options">
               <div className="option-sign-in-sign-up">
                 <h3>Log In or Sign Up</h3>
@@ -225,7 +225,7 @@ const Checkout = () => {
 
       {guestCheckout && (
         <div className='guest-checkout'>
-          <h2>Guest Checkout</h2>
+          <h2 className="title">Guest Checkout</h2>
           <form onSubmit={handleSubmit}>
             <label>
               First Name:
