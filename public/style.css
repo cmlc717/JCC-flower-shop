@@ -271,15 +271,19 @@ p {
 }
 
 .guest-checkout label {
-  width: 200px;
+  width: 300px;
 }
 
-.guest-checkout {
+.guest-checkout,  .option-sign-in-sign-up {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.option-sign-in-sign-up {
+  padding: 20px;
 }
 
 label {
