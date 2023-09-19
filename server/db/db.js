@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const pkg = require('../../package.json')
 
-const databaseName = 'grace-shopper';
+const databaseName = 'jcc_db';
 
 const config = {
   logging: false

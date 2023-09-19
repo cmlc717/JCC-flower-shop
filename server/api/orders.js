@@ -35,12 +35,14 @@ router.get('/orderDetails/:orderId', async(req, res, next) => {
 
 router.post('/orderMyCart/guest', async (req, res, next) => {
   try {
+    //get all products
     let products = req.body.productsArray;
     const productObjects = await Promise.all(products.map(async(array) => {
       let productObj = await Product.findOne({where: {id: array[0]}});
       return productObj;
     }));
 
+    //add products to order
     const newOrder = await Order.create({number: req.body.number,total: req.body.total, tax: req.body.tax, date: req.body.date})
     for (let i = 0; i < productObjects.length; i++) {
       await productObjects[i].addOrder(newOrder);
@@ -48,6 +50,7 @@ router.post('/orderMyCart/guest', async (req, res, next) => {
       await productObjects[i].save();
     }
 
+    //adjust the quantity of each product on the order
     const currentOrderProducts = await OrdersProducts.findAll({where: {orderId: newOrder.id}});
 
     for (let i = 0; i < currentOrderProducts.length; i++) {
@@ -67,6 +70,7 @@ router.post('/orderMyCart/guest', async (req, res, next) => {
 
 router.post('/orderMyCart/:userId', async (req, res, next) => {
   try {
+    //get user and products
     const user = await User.findOne({where: {id: req.params.userId}, include: {model: Product}});
     let products = req.body.productsArray;
     const productObjects = await Promise.all(products.map(async(array) => {
@@ -74,6 +78,7 @@ router.post('/orderMyCart/:userId', async (req, res, next) => {
       return productObj;
     }));
 
+    //add products to order
     const newOrder = await Order.create({number: req.body.number,total: req.body.total, tax: req.body.tax, date: req.body.date})
     for (let i = 0; i < productObjects.length; i++) {
       await productObjects[i].addOrder(newOrder);
@@ -82,6 +87,7 @@ router.post('/orderMyCart/:userId', async (req, res, next) => {
     }
     await user.addOrder(newOrder);
 
+    //update quantities of all products
     const currentOrderProducts = await OrdersProducts.findAll({where: {orderId: newOrder.id}});
 
     for (let i = 0; i < currentOrderProducts.length; i++) {

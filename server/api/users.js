@@ -40,6 +40,7 @@ router.put('/:userId', async (req, res, next) => {
 
 router.post('/saveMyCart/:userId', async (req, res, next) => {
   try {
+    //find upser and products
     const user = await User.findOne({where: {id: req.params.userId}, include: {model: Product}});
     let products = req.body.cart;
     const productObjects = await Promise.all(products.map(async(array) => {
@@ -47,10 +48,12 @@ router.post('/saveMyCart/:userId', async (req, res, next) => {
       return productObj;
     }));
 
+    //add the products to the user
     await user.addProducts(productObjects);
     await user.update({products: productObjects});
     await user.save();
 
+    //update quantities of each product
     const currentCart = await UserProducts.findAll({where: {userId: req.params.userId}});
     for (let i = 0; i < currentCart.length; i++) {
       for (let j = 0; j < products.length; j++) {
