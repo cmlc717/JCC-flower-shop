@@ -25,35 +25,35 @@ async function seed() {
       price: "20.00",
       description: "lots of roses",
       quantity: 1,
-      imageUrl: 'https://i.odealarose.com/12/images/produits/valentine-s-day-red-roses-bouquet-ode-a-la-rose-550x550-37412.jpg'
+      imageUrl: '/roses.jpg'
     }),
     Product.create({
       name: "daisies",
       price: "10.00",
       description: "lots of daisies",      
       quantity: 1,
-      imageUrl: 'https://i.odealarose.com/12/images/produits/therese-550x550-39701.jpg'
+      imageUrl: '/daisies.jpg'
     }),
     Product.create({
       name: "tulips",
       price: "15.00",
       description: "lots of tulips",
       quantity: 1,
-      imageUrl: 'https://i.odealarose.com/12/images/produits/chanel-550x550-39804.jpg'
+      imageUrl: '/tulips.jpg'
     }),
     Product.create({
       name: "peonies",
       price: "30.00",
       description: "lots of peonies",
       quantity: 1,
-      imageUrl: 'https://i.odealarose.com/12/images/produits/pink-peonies-and-roses-550x550-40306.jpg?_ga=2.143603317.1592709613.1686250970-469025691.1686250970'
+      imageUrl: '/peonies.jpg'
     }),
     Product.create({ 
       name: "orchid", 
       price: "35.00", 
       description: "orchids",
       quantity: 1,
-      imageUrl:'https://i.odealarose.com/12/images/produits/white-orchid-delivery-550x550-38206.jpg'
+      imageUrl:'/orchids.jpg'
     }),
   ]);
 

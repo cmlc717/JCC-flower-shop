@@ -198,6 +198,11 @@ img{
   border: 5px solid white;
 }
 
+.product-card img{
+  width:25vw;
+  height: 50vh;
+}
+
 .product-card:nth-child(2n+1) {
   background-color: #bde0fe;
 }
@@ -211,7 +216,7 @@ img{
 }
 
 .single-img{
-  width:500px;
+  width:25vw;
   height: 50vh;
   margin:0;
   padding:0;
